@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundación Misión T.R.E.S - Transformando Vidas</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Swiper JS (Para el carrusel) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; scroll-behavior: smooth; }
+        .gradient-brand { background: linear-gradient(135deg, #1e3a8a 0%, #9119c0 100%); }
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(221, 89, 177, 0.05); }
+        
+        /* Accordion */
+        .accordion-content { max-height: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0; }
+        .accordion-item.active .accordion-content { max-height: 1000px; opacity: 1; padding-bottom: 1.5rem; }
+        .accordion-item.active .chevron { transform: rotate(180deg); }
+
+        /* Custom Swiper Styles */
+        .swiper { width: 100%; height: 500px; border-radius: 24px; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .section-curve { clip-path: ellipse(150% 100% at 50% 100%); }
+    </style>
+</head>
+<body class="text-slate-900">
+
+    <!-- NAVEGACIÓN -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+           <div class="flex items-center gap-3">
+            <div class="overflow-hidden">
+                <img src="https://imgur.com/9FFgFdq.png" alt="Logo Misión TRES" class="h-12 w-auto object-contain">
+            </div>
+            <span class="font-bold text-xl tracking-tight uppercase">
+                Misión <span class="text-blue-600">T.R.E.S</span>
+            </span>
+        </div>
+            <div class="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-wider text-slate-600">
+                <a href="#inicio" class="hover:text-blue-600 transition-colors">Inicio</a>
+                <a href="#nosotros" class="hover:text-blue-600 transition-colors">Nosotros</a>
+                <a href="#proyectos" class="hover:text-blue-600 transition-colors">Proyectos</a>
+                <a href="#transparencia" class="hover:text-blue-600 transition-colors">Transparencia</a>
+                <a href="#contacto" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">Donar Ahora</a>
+            </div>
+            <button class="lg:hidden text-slate-900"><i data-lucide="menu"></i></button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (EMBUDO: ATENCIÓN) -->
+    <section id="inicio" class="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <span class="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase mb-6 tracking-widest">Fundación con Impacto Social</span>
+                <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-900 leading-tight mb-6">
+                    Restaurando el <span class="text-blue-600 italic">Tejido Social</span> de Colombia.
+                </h1>
+                <p class="text-lg text-slate-600 mb-10 leading-relaxed max-w-lg">
+                    En Misión T.R.E.S trabajamos por la transformación integral de individuos y comunidades vulnerables a través de la educación, la salud y la fe.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#proyectos" class="bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-slate-800 transition-all">
+                        Ver Proyectos <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <div class="flex items-center gap-3 px-6 py-4">
+                        <div class="flex -space-x-3">
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-blue-200 flex items-center justify-center text-xs font-bold">+</div>
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-300"></div>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-500">+500 vidas impactadas</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative" data-aos="zoom-in">
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl"></div>
+                <div class="bg-slate-100 rounded-[40px] overflow-hidden aspect-square shadow-2xl border-8 border-white">
+                    <img src="https://imgur.com/aMaqFnP.jpg" alt="Impacto Social" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+ <!-- Razón de Ser) -->
+    <section id="nosotros" class="py-24 bg-slate-50 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            
+            <div class="relative" data-aos="fade-right">
+                <div class="relative bg-white rounded-[40px] overflow-hidden shadow-2xl border-4 border-white">
+                    <img src="https://i.imgur.com/cwrm8Ha.jpg" alt="Visión Fundación" class="w-full h-64 lg:h-[600px] object-cover">
+                    
+                    <div class="absolute bottom-8 right-8 bg-white p-6 rounded-3xl shadow-xl max-w-[280px]" data-aos="zoom-in">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="bg-green-100 text-green-600 p-2 rounded-lg">
+                                <i data-lucide="eye" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-slate-900 uppercase tracking-wider text-sm">Visión</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Lograr la restauración de la calidad de vida de las familias en las comunas de mayor vulnerabilidad y pobreza.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div data-aos="fade-left">
+                <span class="inline-block px-4 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold uppercase mb-6 tracking-widest">Fundación Misión TRES</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-8 leading-tight">
+                    Restaurando el <span class="text-blue-600 italic">Tejido Social</span>.
+                </h2>
+                
+                <div class="space-y-10">
+                    <div class="flex gap-5">
+                        <div class="flex-shrink-0 w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-lg">
+                            <i data-lucide="target" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl text-slate-900 mb-2">Misión</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Desarrollar estrategias de carácter espiritual y material que beneficien a la población en su calidad de vida. Cada acción está soportada en principios de las sagradas escrituras, buscando una verdadera restauración social de acuerdo a las necesidades de cada comunidad.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-5">
+                        <div class="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg">
+                            <i data-lucide="heart" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl text-slate-900 mb-2">Propósito</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Actuar con conciencia y responsabilidad ante la indiferencia social. Nos comprometemos a ser un instrumento para acercar bendiciones a los más vulnerables, trabajando sin proselitismos políticos ni religiosos, enfocados únicamente en el bienestar del prójimo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <p class="text-slate-500 text-xs border-l-2 border-slate-300 pl-4 italic">
+                            Comprometidos con el logro de nuestra visión y misión bajo la guía del creador.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+
+    <!-- CARRUSEL DE PROYECTOS (EMBUDO: DESEO) -->
+    <section id="proyectos" class="py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6" data-aos="fade-right">
+                <div>
+                    <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">Proyectos en Marcha</h2>
+                    <p class="text-slate-500 text-lg">Vea cómo su apoyo se convierte en realidades tangibles.</p>
+                </div>
+                <div class="flex gap-4">
+                    <button class="swiper-prev bg-white border border-slate-200 w-12 h-12 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                        <i data-lucide="chevron-left"></i>
+                    </button>
+                    <button class="swiper-next bg-white border border-slate-200 w-12 h-12 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Swiper -->
+            <div class="swiper mySwiper" data-aos="fade-up">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide relative">
+                        <img src="https://imgur.com/ylucUQB.jpg" alt="Proyecto Educación">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex flex-col justify-end p-12">
+                            <h3 class="text-3xl font-bold text-white mb-2">Escuelas de Liderazgo</h3>
+                            <p class="text-slate-300 max-w-md italic">Formación de jóvenes para que sean agentes de cambio en sus propios barrios.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide relative">
+                        <img src="https://imgur.com/tBbXB6P.jpg" alt="Proyecto Comedor">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex flex-col justify-end p-12">
+                            <h3 class="text-3xl font-bold text-white mb-2">Bienestar Nutricional</h3>
+                            <p class="text-slate-300 max-w-md italic">Asegurando que la nutrición no sea un obstáculo para el aprendizaje de los niños.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide relative">
+                        <img src="https://imgur.com/9QoOoph.jpg" alt="Proyecto Artes">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex flex-col justify-end p-12">
+                            <h3 class="text-3xl font-bold text-white mb-2">Talleres de Artesanía</h3>
+                            <p class="text-slate-300 max-w-md italic">Fomentando la creatividad como herramienta de sanidad interior y emprendimiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- SECCIÓN DE TRANSPARENCIA (ESTILO SANTA FE) -->
+    <section id="transparencia" class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-blue-600 font-bold uppercase tracking-widest text-xs">Cumplimiento DIAN</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mt-2">Régimen Tributario Especial</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto italic">
+                    "Dando cumplimiento a lo establecido en la Ley 1819 de 2016 y el Decreto 2150 de 2017, la Fundación Misión T.R.E.S presenta su información ante la sociedad civil."
+                </p>
+            </div>
+
+            <!-- Tabs de Años -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
+                <button class="tab-btn active px-8 py-3 rounded-full border-2 border-slate-200 font-bold text-sm transition-all" onclick="showYear('2026', this)">Año 2026</button>
+                <button class="tab-btn px-8 py-3 rounded-full border-2 border-slate-200 font-bold text-sm transition-all" onclick="showYear('2027', this)">Año 2027</button>
+                <button class="tab-btn px-8 py-3 rounded-full border-2 border-slate-200 font-bold text-sm transition-all" onclick="showYear('2028', this)">Año 2028</button>
+            </div>
+
+            <!-- Contenido por Años -->
+            <div id="content-2025" class="year-content space-y-4 max-w-4xl mx-auto" data-aos="fade-up">
+                <!-- Documento Item -->
+                <div class="accordion-item border border-slate-200 rounded-2xl overflow-hidden active">
+                    <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition-colors" onclick="toggleAccordion(this)">
+                        <span class="font-bold flex items-center gap-3"><i data-lucide="file-check" class="text-blue-600 w-5 h-5"></i> Informe de Gestión 2025</span>
+                        <i data-lucide="chevron-down" class="chevron w-5 h-5 transition-transform"></i>
+                    </button>
+                    <div class="accordion-content px-8 pt-4">
+                        <p class="text-sm text-slate-600 mb-4">Detalle de las actividades realizadas, impacto social y cumplimiento de los objetivos misionales durante el periodo actual.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline"><i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)</a>
+                    </div>
+                </div>
+
+                <div class="accordion-item border border-slate-200 rounded-2xl overflow-hidden">
+                    <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition-colors" onclick="toggleAccordion(this)">
+                        <span class="font-bold flex items-center gap-3"><i data-lucide="table" class="text-blue-600 w-5 h-5"></i> Estados Financieros 2025</span>
+                        <i data-lucide="chevron-down" class="chevron w-5 h-5 transition-transform"></i>
+                    </button>
+                    <div class="accordion-content px-8 pt-4">
+                        <p class="text-sm text-slate-600 mb-4">Balance General, Estado de Resultados y notas a los estados financieros con corte anual.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline"><i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)</a>
+                    </div>
+                </div>
+
+                <div class="accordion-item border border-slate-200 rounded-2xl overflow-hidden">
+                    <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition-colors" onclick="toggleAccordion(this)">
+                        <span class="font-bold flex items-center gap-3"><i data-lucide="award" class="text-blue-600 w-5 h-5"></i> Certificación de Cumplimiento Requisitos</span>
+                        <i data-lucide="chevron-down" class="chevron w-5 h-5 transition-transform"></i>
+                    </button>
+                    <div class="accordion-content px-8 pt-4">
+                        <p class="text-sm text-slate-600 mb-4">Certificación firmada por el Representante Legal y Revisor Fiscal sobre el cumplimiento de los requisitos para pertenecer al RTE.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline"><i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido otros años (Ocultos por defecto) -->
+            <div id="content-2024" class="year-content hidden space-y-4 max-w-4xl mx-auto">
+                <p class="text-center py-10 text-slate-400 italic font-medium">Cargando archivos del archivo 2024...</p>
+            </div>
+            <div id="content-2023" class="year-content hidden space-y-4 max-w-4xl mx-auto">
+                <p class="text-center py-10 text-slate-400 italic font-medium">Cargando archivos del archivo 2023...</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    
+    <!-- CONTACTO Y CIERRE (EMBUDO: ACCIÓN) -->
+    <section id="contacto" class="py-24 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center" data-aos="zoom-in">
+            <h2 class="text-4xl lg:text-6xl font-black text-slate-900 mb-8">¿Listo para ser parte del <span class="text-blue-600">cambio</span>?</h2>
+            <p class="text-lg text-slate-600 mb-12"> cada oración cuenta. Únase hoy a nuestra misión  y ayúdenos a llegar a más familias.</p>
+            
+            <div class="bg-white p-8 lg:p-12 rounded-[48px] shadow-2xl border border-slate-100 flex flex-col md:flex-row items-center gap-8 justify-between">
+                <div class="text-left">
+                    <p class="text-sm font-bold text-blue-600 uppercase mb-2">Canales Directos</p>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-4">Contáctenos hoy mismo</h4>
+                    <div class="space-y-2 text-slate-500 font-medium">
+                        <p class="flex items-center gap-3"><i data-lucide="phone" class="w-5 h-5 text-blue-600"></i> +57 304 5510438</p>
+                        <p class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5 text-blue-600"></i> 
+oralca777@gmail.com</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-auto">
+                    <a href="https://wa.me/573045510438?text=Hola,%20deseo%20realizar%20una%20donación%20y%20apoyar%20la%20labor%20de%20la%20Fundación%20Misión%20TRES" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="inline-flex items-center justify-center px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-green-200/50 gap-2">
+    <i data-lucide="message-circle" class="w-5 h-5"></i>
+    Donar Ahora
+</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-12 items-center">
+            
+            <div>
+                <h3 class="text-2xl font-bold mb-4">Fundación Misión TRES</h3>
+                <p class="text-slate-400 text-sm">Restaurando el tejido social en las comunidades más vulnerables.</p>
+            </div>
+
+            <div class="flex flex-col items-center">
+                <h4 class="font-bold mb-6 uppercase tracking-widest text-xs text-slate-500">Síguenos en nuestras redes</h4>
+                <div class="flex gap-6">
+                    <a href="https://www.facebook.com/paztorlando" target="_blank" rel="noopener noreferrer" 
+                       class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-blue-600 transition-all duration-300 group">
+                        <i data-lucide="facebook" class="w-6 h-6 group-hover:scale-110"></i>
+                    </a>
+
+                    <a href="https://www.youtube.com/@orlandoalvaradocardo/featured" target="_blank" rel="noopener noreferrer" 
+                       class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-all duration-300 group">
+                        <i data-lucide="youtube" class="w-6 h-6 group-hover:scale-110"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <p class="text-slate-400 text-sm">&copy; 2026 Fundación Misión TRES.</p>
+                <p class="text-slate-500 text-xs mt-2">Santiago de Cali, Colombia</p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Inicializar animaciones
+        AOS.init({ duration: 1000, once: true });
+        
+        // Inicializar Iconos
+        lucide.createIcons();
+
+        // Inicializar Swiper
+        const swiper = new Swiper(".mySwiper", {
+            loop: true,
+            spaceBetween: 20,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            navigation: {
+                nextEl: ".swiper-next",
+                prevEl: ".swiper-prev",
+            },
+        });
+
+        // Lógica de Acordeón
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            item.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
+
+https://imgur.com/a/CxLG4qE  fotos 
