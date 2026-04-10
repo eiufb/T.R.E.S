@@ -6,6 +6,19 @@
     <title>Fundación Misión T.R.E.S - Transformando Vidas</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                brandBlue: '#0000CC',
+                brandYellow: '#FFFF00',
+                brandRed: '#FF0000',
+              }
+            }
+          }
+        }
+    </script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- AOS Library -->
@@ -16,8 +29,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #ffffff; scroll-behavior: smooth; }
-        .gradient-brand { background: linear-gradient(135deg, #1e3a8a 0%, #9119c0 100%); }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(221, 89, 177, 0.05); }
+        .gradient-brand { background: linear-gradient(135deg, #0000CC 0%, #FF0000 100%); }
+        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); border-bottom: 3px solid #FFFF00; }
         
         /* Accordion */
         .accordion-content { max-height: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0; }
@@ -25,89 +38,249 @@
         .accordion-item.active .chevron { transform: rotate(180deg); }
 
         /* Custom Swiper Styles */
-        .swiper { width: 100%; height: 500px; border-radius: 24px; }
+        .hero-swiper { width: 100%; height: 100vh; }
+        .mySwiper { width: 100%; height: 500px; border-radius: 24px; }
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
         
         .section-curve { clip-path: ellipse(150% 100% at 50% 100%); }
+
+        /* Estilo de selección de texto */
+        ::selection { background: #FFFF00; color: #0000CC; }
+
+        /* Scrollbar personalizado */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #0000CC; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF0000; }
+
+        /* Ajuste para el Hero Content */
+        .hero-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, rgba(0,0,102,0.8), transparent);
+        }
+    
+        
+/* Contenedor principal del botón */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Efecto al pasar el mouse */
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            color: #FFF;
+        }
+
+        /* Tooltip o texto de ayuda (opcional) */
+        .whatsapp-float::after {
+            content: "¡Chatea con nosotros!";
+            position: absolute;
+            right: 70px;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .whatsapp-float:hover::after {
+            opacity: 1;
+        }
+
+        /* Animación de pulso para llamar la atención */
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                box-shadow: 0 0 0 0px rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0px rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Adaptación para móviles */
+        @media screen and (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 30px;
+            }
+            .whatsapp-float::after {
+                display: none; /* Ocultar tooltip en móviles */
+            }
+        }
     </style>
 </head>
 <body class="text-slate-900">
+
+    
+    <script>
+        // Script para manejar el evento de clic
+        document.getElementById('whatsappButton').addEventListener('click', function() {
+            console.log("El usuario ha iniciado un chat de WhatsApp");
+        });
+    </script>
 
     <!-- NAVEGACIÓN -->
     <nav class="fixed top-0 w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
            <div class="flex items-center gap-3">
             <div class="overflow-hidden">
-                <img src="https://imgur.com/9FFgFdq.png" alt="Logo Misión TRES" class="h-12 w-auto object-contain">
+                <img src="https://imgur.com/mMXD5Jn.png" alt="Logo Misión TRES" class="h-12 w-auto object-contain">
             </div>
             <span class="font-bold text-xl tracking-tight uppercase">
-                Misión <span class="text-blue-600">T.R.E.S</span>
+                Misión <span class="text-brandBlue">T.R.E.S</span>
             </span>
         </div>
             <div class="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-wider text-slate-600">
-                <a href="#inicio" class="hover:text-blue-600 transition-colors">Inicio</a>
-                <a href="#nosotros" class="hover:text-blue-600 transition-colors">Nosotros</a>
-                <a href="#proyectos" class="hover:text-blue-600 transition-colors">Proyectos</a>
-                <a href="#transparencia" class="hover:text-blue-600 transition-colors">Transparencia</a>
-                <a href="#contacto" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">Donar Ahora</a>
+                <a href="#inicio" class="hover:text-brandBlue transition-colors">Inicio</a>
+                <a href="#nosotros" class="hover:text-brandBlue transition-colors">Nosotros</a>
+                <a href="#proyectos" class="hover:text-brandBlue transition-colors">Proyectos</a>
+                <a href="#transparencia" class="hover:text-brandBlue transition-colors">Transparencia</a>
+                <a href="#contacto" class="bg-brandBlue text-white px-6 py-3 rounded-full hover:bg-brandRed transition-all shadow-lg shadow-brandBlue/20">Donar Ahora</a>
             </div>
-            <button class="lg:hidden text-slate-900"><i data-lucide="menu"></i></button>
+            <button class="lg:hidden text-brandBlue"><i data-lucide="menu"></i></button>
         </div>
     </nav>
 
-    <!-- HERO SECTION (EMBUDO: ATENCIÓN) -->
-    <section id="inicio" class="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-            <div data-aos="fade-right">
-                <span class="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase mb-6 tracking-widest">Fundación con Impacto Social</span>
-                <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-900 leading-tight mb-6">
-                    Restaurando el <span class="text-blue-600 italic">Tejido Social</span> de Colombia.
-                </h1>
-                <p class="text-lg text-slate-600 mb-10 leading-relaxed max-w-lg">
-                    En Misión T.R.E.S trabajamos por la transformación integral de individuos y comunidades vulnerables a través de la educación, la salud y la fe.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#proyectos" class="bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-slate-800 transition-all">
-                        Ver Proyectos <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </a>
-                    <div class="flex items-center gap-3 px-6 py-4">
-                        <div class="flex -space-x-3">
-                            <div class="w-10 h-10 rounded-full border-2 border-white bg-blue-200 flex items-center justify-center text-xs font-bold">+</div>
-                            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200"></div>
-                            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-300"></div>
+    <!-- HERO SECTION CON CARRUSEL INTERACTIVO -->
+    <section id="inicio" class="relative h-screen min-h-[600px] overflow-hidden">
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide relative">
+                    <img src="https://imgur.com/aMaqFnP.jpg" alt="Impacto Social" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="hero-content">
+                        <div class="max-w-7xl mx-auto px-6 w-full">
+                            <div class="max-w-3xl" data-aos="fade-up">
+                                <span class="inline-block px-4 py-1 rounded-full bg-brandYellow text-brandBlue text-xs font-bold uppercase mb-6 tracking-widest border border-brandBlue/20">Fundación con Impacto Social</span>
+                                <h1 class="text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+                                    Restaurando el <span class="text-brandYellow italic">Tejido Social</span> de Colombia.
+                                </h1>
+                                <p class="text-lg text-slate-200 mb-10 leading-relaxed max-w-xl">
+                                    En Misión T.R.E.S trabajamos por la transformación integral de individuos y comunidades vulnerables a través de la educación, la salud y la fe.
+                                </p>
+                                <div class="flex flex-wrap gap-4">
+                                    <a href="#proyectos" class="bg-brandBlue text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-brandRed transition-all shadow-xl shadow-brandBlue/30">
+                                        Ver Proyectos <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                                    </a>
+                                    <div class="flex items-center gap-3 px-6 py-4 bg-white/10 backdrop-blur-md rounded-2xl">
+                                        <div class="flex -space-x-3">
+                                            <div class="w-10 h-10 rounded-full border-2 border-white bg-brandYellow flex items-center justify-center text-xs font-bold text-brandBlue">Y</div>
+                                            <div class="w-10 h-10 rounded-full border-2 border-white bg-brandBlue flex items-center justify-center text-xs font-bold text-white">B</div>
+                                            <div class="w-10 h-10 rounded-full border-2 border-white bg-brandRed flex items-center justify-center text-xs font-bold text-white">R</div>
+                                        </div>
+                                        <span class="text-sm font-semibold text-white">+500 vidas impactadas</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <span class="text-sm font-semibold text-slate-500">+500 vidas impactadas</span>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide relative">
+                    <img src="https://imgur.com/sak6MfI.jpg" alt="Comunidad" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="hero-content !bg-black/40">
+                        <div class="max-w-7xl mx-auto px-6 w-full text-right flex justify-end">
+                            <div class="max-w-3xl">
+                                <span class="inline-block px-4 py-1 rounded-full bg-brandRed text-white text-xs font-bold uppercase mb-6 tracking-widest">Nuestra Misión</span>
+                                <h2 class="text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+                                    Transformando el <span class="text-brandYellow italic">Futuro</span> hoy.
+                                </h2>
+                                <p class="text-lg text-slate-200 mb-10 leading-relaxed max-w-xl ml-auto">
+                                    Cada acción cuenta. Llevamos esperanza y herramientas de crecimiento a quienes más lo necesitan en nuestras comunas.
+                                </p>
+                                <div class="flex flex-wrap gap-4 justify-end">
+                                    <a href="#contacto" class="bg-brandYellow text-brandBlue px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-white transition-all shadow-xl">
+                                        Contáctanos <i data-lucide="message-circle" class="w-5 h-5"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide relative">
+                    <img src="https://imgur.com/2FebjAD.jpg" alt="Educación" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="hero-content !bg-black/40">
+                        <div class="max-w-7xl mx-auto px-6 w-full text-center">
+                            <div class="max-w-4xl mx-auto">
+                                <span class="inline-block px-4 py-1 rounded-full bg-brandBlue text-white text-xs font-bold uppercase mb-6 tracking-widest border border-white/20">Educación y Fe</span>
+                                <h2 class="text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+                                    Formando <span class="text-brandRed italic">Líderes</span> de Cambio.
+                                </h2>
+                                <p class="text-lg text-slate-200 mb-10 leading-relaxed max-w-2xl mx-auto">
+                                    Creemos en el potencial de cada persona. Nuestras escuelas de liderazgo son el motor de una nueva generación.
+                                </p>
+                                <div class="flex flex-wrap gap-4 justify-center">
+                                    <a href="#nosotros" class="bg-white text-brandBlue px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-brandYellow transition-all shadow-xl">
+                                        Conocer Más <i data-lucide="info" class="w-5 h-5"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="relative" data-aos="zoom-in">
-                <div class="absolute -top-10 -right-10 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl"></div>
-                <div class="bg-slate-100 rounded-[40px] overflow-hidden aspect-square shadow-2xl border-8 border-white">
-                    <img src="https://imgur.com/aMaqFnP.jpg" alt="Impacto Social" class="w-full h-full object-cover">
-                </div>
-            </div>
+            <!-- Controles del carrusel -->
+            <div class="swiper-pagination !bottom-10"></div>
+            <div class="swiper-button-next !text-white !right-10 after:!text-3xl hidden lg:flex"></div>
+            <div class="swiper-button-prev !text-white !left-10 after:!text-3xl hidden lg:flex"></div>
         </div>
     </section>
 
-    
-
- <!-- Razón de Ser) -->
-    <section id="nosotros" class="py-24 bg-slate-50 overflow-hidden">
+    <!-- Razón de Ser -->
+    <section id="nosotros" class="py-24 bg-brandBlue/5 overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
             
             <div class="relative" data-aos="fade-right">
-                <div class="relative bg-white rounded-[40px] overflow-hidden shadow-2xl border-4 border-white">
+                <div class="relative bg-white rounded-[40px] overflow-hidden shadow-2xl border-4 border-brandBlue">
                     <img src="https://i.imgur.com/cwrm8Ha.jpg" alt="Visión Fundación" class="w-full h-64 lg:h-[600px] object-cover">
                     
-                    <div class="absolute bottom-8 right-8 bg-white p-6 rounded-3xl shadow-xl max-w-[280px]" data-aos="zoom-in">
+                    <div class="absolute bottom-8 right-8 bg-brandYellow p-6 rounded-3xl shadow-xl max-w-[280px] border-2 border-brandBlue" data-aos="zoom-in">
                         <div class="flex items-center gap-3 mb-3">
-                            <div class="bg-green-100 text-green-600 p-2 rounded-lg">
+                            <div class="bg-brandBlue text-white p-2 rounded-lg">
                                 <i data-lucide="eye" class="w-5 h-5"></i>
                             </div>
-                            <span class="font-bold text-slate-900 uppercase tracking-wider text-sm">Visión</span>
+                            <span class="font-bold text-brandBlue uppercase tracking-wider text-sm">Visión</span>
                         </div>
-                        <p class="text-xs text-slate-600 leading-relaxed">
+                        <p class="text-xs text-brandBlue font-medium leading-relaxed">
                             Lograr la restauración de la calidad de vida de las familias en las comunas de mayor vulnerabilidad y pobreza.
                         </p>
                     </div>
@@ -115,18 +288,18 @@
             </div>
 
             <div data-aos="fade-left">
-                <span class="inline-block px-4 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold uppercase mb-6 tracking-widest">Fundación Misión TRES</span>
+                <span class="inline-block px-4 py-1 rounded-full bg-brandRed text-white text-xs font-bold uppercase mb-6 tracking-widest">Fundación Misión TRES</span>
                 <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-8 leading-tight">
-                    Restaurando el <span class="text-blue-600 italic">Tejido Social</span>.
+                    Restaurando el <span class="text-brandBlue italic">Tejido Social</span>.
                 </h2>
                 
                 <div class="space-y-10">
                     <div class="flex gap-5">
-                        <div class="flex-shrink-0 w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-lg">
+                        <div class="flex-shrink-0 w-12 h-12 bg-brandBlue text-white rounded-2xl flex items-center justify-center shadow-lg">
                             <i data-lucide="target" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-xl text-slate-900 mb-2">Misión</h4>
+                            <h4 class="font-bold text-xl text-brandBlue mb-2">Misión</h4>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 Desarrollar estrategias de carácter espiritual y material que beneficien a la población en su calidad de vida. Cada acción está soportada en principios de las sagradas escrituras, buscando una verdadera restauración social de acuerdo a las necesidades de cada comunidad.
                             </p>
@@ -134,11 +307,11 @@
                     </div>
 
                     <div class="flex gap-5">
-                        <div class="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg">
+                        <div class="flex-shrink-0 w-12 h-12 bg-brandRed text-white rounded-2xl flex items-center justify-center shadow-lg">
                             <i data-lucide="heart" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-xl text-slate-900 mb-2">Propósito</h4>
+                            <h4 class="font-bold text-xl text-brandRed mb-2">Propósito</h4>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 Actuar con conciencia y responsabilidad ante la indiferencia social. Nos comprometemos a ser un instrumento para acercar bendiciones a los más vulnerables, trabajando sin proselitismos políticos ni religiosos, enfocados únicamente en el bienestar del prójimo.
                             </p>
@@ -146,7 +319,7 @@
                     </div>
 
                     <div class="pt-4">
-                        <p class="text-slate-500 text-xs border-l-2 border-slate-300 pl-4 italic">
+                        <p class="text-slate-500 text-xs border-l-4 border-brandYellow pl-4 italic font-semibold">
                             Comprometidos con el logro de nuestra visión y misión bajo la guía del creador.
                         </p>
                     </div>
@@ -156,48 +329,46 @@
     </div>
 </section>
 
-    
-
-    <!-- CARRUSEL DE PROYECTOS (EMBUDO: DESEO) -->
-    <section id="proyectos" class="py-24 overflow-hidden">
+    <!-- CARRUSEL DE PROYECTOS -->
+    <section id="proyectos" class="py-24 overflow-hidden bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6" data-aos="fade-right">
                 <div>
                     <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">Proyectos en Marcha</h2>
-                    <p class="text-slate-500 text-lg">Vea cómo su apoyo se convierte en realidades tangibles.</p>
+                    <p class="text-brandBlue font-semibold text-lg">Vea cómo su apoyo se convierte en realidades tangibles.</p>
                 </div>
                 <div class="flex gap-4">
-                    <button class="swiper-prev bg-white border border-slate-200 w-12 h-12 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                    <button class="swiper-prev bg-white border-2 border-brandBlue text-brandBlue w-12 h-12 rounded-full flex items-center justify-center hover:bg-brandBlue hover:text-white transition-all shadow-sm">
                         <i data-lucide="chevron-left"></i>
                     </button>
-                    <button class="swiper-next bg-white border border-slate-200 w-12 h-12 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                    <button class="swiper-next bg-white border-2 border-brandBlue text-brandBlue w-12 h-12 rounded-full flex items-center justify-center hover:bg-brandBlue hover:text-white transition-all shadow-sm">
                         <i data-lucide="chevron-right"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Swiper -->
+            <!-- Swiper Proyectos -->
             <div class="swiper mySwiper" data-aos="fade-up">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide relative">
+                    <div class="swiper-slide relative border-4 border-brandYellow rounded-[24px] overflow-hidden">
                         <img src="https://imgur.com/ylucUQB.jpg" alt="Proyecto Educación">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex flex-col justify-end p-12">
-                            <h3 class="text-3xl font-bold text-white mb-2">Escuelas de Liderazgo</h3>
-                            <p class="text-slate-300 max-w-md italic">Formación de jóvenes para que sean agentes de cambio en sus propios barrios.</p>
+                        <div class="absolute inset-0 bg-gradient-to-t from-brandBlue/90 via-transparent to-transparent flex flex-col justify-end p-12">
+                            <h3 class="text-3xl font-bold text-brandYellow mb-2">Escuelas de Liderazgo</h3>
+                            <p class="text-white max-w-md italic">Formación de jóvenes para que sean agentes de cambio en sus propios barrios.</p>
                         </div>
                     </div>
-                    <div class="swiper-slide relative">
+                    <div class="swiper-slide relative border-4 border-brandBlue rounded-[24px] overflow-hidden">
                         <img src="https://imgur.com/tBbXB6P.jpg" alt="Proyecto Comedor">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex flex-col justify-end p-12">
-                            <h3 class="text-3xl font-bold text-white mb-2">Bienestar Nutricional</h3>
-                            <p class="text-slate-300 max-w-md italic">Asegurando que la nutrición no sea un obstáculo para el aprendizaje de los niños.</p>
+                        <div class="absolute inset-0 bg-gradient-to-t from-brandRed/90 via-transparent to-transparent flex flex-col justify-end p-12">
+                            <h3 class="text-3xl font-bold text-brandYellow mb-2">Bienestar Nutricional</h3>
+                            <p class="text-white max-w-md italic font-medium">Asegurando que la nutrición no sea un obstáculo para el aprendizaje de los niños.</p>
                         </div>
                     </div>
-                    <div class="swiper-slide relative">
+                    <div class="swiper-slide relative border-4 border-brandRed rounded-[24px] overflow-hidden">
                         <img src="https://imgur.com/9QoOoph.jpg" alt="Proyecto Artes">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex flex-col justify-end p-12">
-                            <h3 class="text-3xl font-bold text-white mb-2">Talleres de Artesanía</h3>
-                            <p class="text-slate-300 max-w-md italic">Fomentando la creatividad como herramienta de sanidad interior y emprendimiento.</p>
+                        <div class="absolute inset-0 bg-gradient-to-t from-brandBlue/90 via-transparent to-transparent flex flex-col justify-end p-12">
+                            <h3 class="text-3xl font-bold text-brandYellow mb-2">Talleres de Artesanía</h3>
+                            <p class="text-white max-w-md italic">Fomentando la creatividad como herramienta de sanidad interior y emprendimiento.</p>
                         </div>
                     </div>
                 </div>
@@ -205,171 +376,207 @@
         </div>
     </section>
 
-<!-- SECCIÓN DE TRANSPARENCIA (ESTILO SANTA FE) -->
-    <section id="transparencia" class="py-24 bg-white border-t border-slate-100">
+    <!-- SECCIÓN DE TRANSPARENCIA -->
+    <section id="transparencia" class="py-24 bg-slate-50 border-t-8 border-brandYellow">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-blue-600 font-bold uppercase tracking-widest text-xs">Cumplimiento DIAN</span>
-                <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mt-2">Régimen Tributario Especial</h2>
-                <p class="text-slate-500 mt-4 max-w-2xl mx-auto italic">
+                <span class="text-brandBlue font-bold uppercase tracking-widest text-xs px-4 py-1 bg-brandYellow rounded-full border border-brandBlue/20">Cumplimiento DIAN</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mt-6">Régimen Tributario Especial</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto italic font-medium">
                     "Dando cumplimiento a lo establecido en la Ley 1819 de 2016 y el Decreto 2150 de 2017, la Fundación Misión T.R.E.S presenta su información ante la sociedad civil."
                 </p>
             </div>
 
             <!-- Tabs de Años -->
             <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
-                <button class="tab-btn active px-8 py-3 rounded-full border-2 border-slate-200 font-bold text-sm transition-all" onclick="showYear('2026', this)">Año 2026</button>
-                <button class="tab-btn px-8 py-3 rounded-full border-2 border-slate-200 font-bold text-sm transition-all" onclick="showYear('2027', this)">Año 2027</button>
-                <button class="tab-btn px-8 py-3 rounded-full border-2 border-slate-200 font-bold text-sm transition-all" onclick="showYear('2028', this)">Año 2028</button>
+                <button class="tab-btn active px-8 py-3 rounded-full border-2 border-brandBlue bg-brandBlue text-white font-bold text-sm transition-all shadow-lg" onclick="showYear('2026', this)">Año 2026</button>
+                <button class="tab-btn px-8 py-3 rounded-full border-2 border-brandBlue text-brandBlue font-bold text-sm transition-all hover:bg-brandYellow" onclick="showYear('2027', this)">Año 2027</button>
+                <button class="tab-btn px-8 py-3 rounded-full border-2 border-brandBlue text-brandBlue font-bold text-sm transition-all hover:bg-brandYellow" onclick="showYear('2028', this)">Año 2028</button>
             </div>
 
             <!-- Contenido por Años -->
-            <div id="content-2025" class="year-content space-y-4 max-w-4xl mx-auto" data-aos="fade-up">
-                <!-- Documento Item -->
+            <div id="content-2026" class="year-content space-y-4 max-w-4xl mx-auto" data-aos="fade-up">
                 <div class="space-y-4">
+                    <div class="accordion-item border-2 border-brandBlue rounded-2xl overflow-hidden active bg-white">
+                        <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-brandYellow/10 hover:bg-brandYellow/20 transition-colors" onclick="toggleAccordion(this)">
+                            <span class="font-bold flex items-center gap-3 text-brandBlue"><i data-lucide="file-text" class="text-brandRed w-5 h-5"></i> 1. Acta de Constitución</span>
+                            <i data-lucide="chevron-down" class="chevron w-5 h-5 text-brandBlue transition-transform"></i>
+                        </button>
+                        <div class="accordion-content px-8 pt-4">
+                            <p class="text-sm text-slate-600 mb-4 font-medium">Documento oficial de fundación de la entidad, donde se establecen los principios y la voluntad de creación.</p>
+                            <a href="3. ACTA DE CONSTITUCIÓN.pdf" download class="inline-flex items-center gap-2 text-brandRed font-extrabold text-sm hover:underline">
+                                <i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)
+                            </a>
+                        </div>
+                    </div>
 
-    <div class="accordion-item border border-slate-200 rounded-2xl overflow-hidden active">
-        <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition-colors" onclick="toggleAccordion(this)">
-            <span class="font-bold flex items-center gap-3"><i data-lucide="file-text" class="text-blue-600 w-5 h-5"></i> 1. Acta de Constitución</span>
-            <i data-lucide="chevron-down" class="chevron w-5 h-5 transition-transform"></i>
-        </button>
-        <div class="accordion-content px-8 pt-4">
-            <p class="text-sm text-slate-600 mb-4">Documento oficial de fundación de la entidad, donde se establecen los principios y la voluntad de creación.</p>
-            <a href="3. ACTA DE CONSTITUCIÓN.pdf" download class="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline">
-                <i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)
-            </a>
-        </div>
-    </div>
+                    <div class="accordion-item border-2 border-brandBlue rounded-2xl overflow-hidden bg-white">
+                        <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-brandYellow/10 hover:bg-brandYellow/20 transition-colors" onclick="toggleAccordion(this)">
+                            <span class="font-bold flex items-center gap-3 text-brandBlue"><i data-lucide="book-open" class="text-brandRed w-5 h-5"></i> 2. Estatutos Compilados</span>
+                            <i data-lucide="chevron-down" class="chevron w-5 h-5 text-brandBlue transition-transform"></i>
+                        </button>
+                        <div class="accordion-content px-8 pt-4">
+                            <p class="text-sm text-slate-600 mb-4 font-medium">Cuerpo normativo que rige el funcionamiento interno, objetivos sociales y estructura de la fundación.</p>
+                            <a href="6. ESTATUTOS COMPILADOS.pdf" download class="inline-flex items-center gap-2 text-brandRed font-extrabold text-sm hover:underline">
+                                <i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)
+                            </a>
+                        </div>
+                    </div>
 
-    <div class="accordion-item border border-slate-200 rounded-2xl overflow-hidden">
-        <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition-colors" onclick="toggleAccordion(this)">
-            <span class="font-bold flex items-center gap-3"><i data-lucide="book-open" class="text-blue-600 w-5 h-5"></i> 2. Estatutos Compilados</span>
-            <i data-lucide="chevron-down" class="chevron w-5 h-5 transition-transform"></i>
-        </button>
-        <div class="accordion-content px-8 pt-4">
-            <p class="text-sm text-slate-600 mb-4">Cuerpo normativo que rige el funcionamiento interno, objetivos sociales y estructura de la fundación.</p>
-            <a href="6. ESTATUTOS COMPILADOS.pdf" download class="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline">
-                <i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)
-            </a>
-        </div>
-    </div>
+                    <div class="accordion-item border-2 border-brandBlue rounded-2xl overflow-hidden bg-white">
+                        <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-brandYellow/10 hover:bg-brandYellow/20 transition-colors" onclick="toggleAccordion(this)">
+                            <span class="font-bold flex items-center gap-3 text-brandBlue"><i data-lucide="shield-check" class="text-brandRed w-5 h-5"></i> 3. Certificado Cámara de Comercio</span>
+                            <i data-lucide="chevron-down" class="chevron w-5 h-5 text-brandBlue transition-transform"></i>
+                        </button>
+                        <div class="accordion-content px-8 pt-4">
+                            <p class="text-sm text-slate-600 mb-4 font-medium">Certificado vigente de existencia y representación legal de la Fundación Misión TRES.</p>
+                            <a href="4. CERTIFICADO EXISTENCIA Y REP - F MISION TRES.pdf" download class="inline-flex items-center gap-2 text-brandRed font-extrabold text-sm hover:underline">
+                                <i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)
+                            </a>
+                        </div>
+                    </div>
 
-    <div class="accordion-item border border-slate-200 rounded-2xl overflow-hidden">
-        <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition-colors" onclick="toggleAccordion(this)">
-            <span class="font-bold flex items-center gap-3"><i data-lucide="shield-check" class="text-blue-600 w-5 h-5"></i> 3. Certificado Cámara de Comercio</span>
-            <i data-lucide="chevron-down" class="chevron w-5 h-5 transition-transform"></i>
-        </button>
-        <div class="accordion-content px-8 pt-4">
-            <p class="text-sm text-slate-600 mb-4">Certificado vigente de existencia y representación legal de la Fundación Misión TRES.</p>
-            <a href="4. CERTIFICADO EXISTENCIA Y REP - F MISION TRES.pdf" download class="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline">
-                <i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)
-            </a>
-        </div>
-    </div>
+                    <div class="accordion-item border-2 border-brandBlue rounded-2xl overflow-hidden bg-white">
+                        <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-brandYellow/10 hover:bg-brandYellow/20 transition-colors" onclick="toggleAccordion(this)">
+                            <span class="font-bold flex items-center gap-3 text-brandBlue"><i data-lucide="award" class="text-brandRed w-5 h-5"></i> 4. Certificación de Requisitos RTE</span>
+                            <i data-lucide="chevron-down" class="chevron w-5 h-5 text-brandBlue transition-transform"></i>
+                        </button>
+                        <div class="accordion-content px-8 pt-4">
+                            <p class="text-sm text-slate-600 mb-4 font-medium">Certificación de cumplimiento de requisitos para el Régimen Tributario Especial según normativa DIAN.</p>
+                            <a href="2. CERTIFICADO DE CUMPLIMIENTO RTE FUNDACIÓN MISION TRES_0001_0001 (1).pdf" download class="inline-flex items-center gap-2 text-brandRed font-extrabold text-sm hover:underline">
+                                <i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)
+                            </a>
+                        </div>
+                    </div>
 
-    <div class="accordion-item border border-slate-200 rounded-2xl overflow-hidden">
-        <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition-colors" onclick="toggleAccordion(this)">
-            <span class="font-bold flex items-center gap-3"><i data-lucide="award" class="text-blue-600 w-5 h-5"></i> 4. Certificación de Requisitos RTE</span>
-            <i data-lucide="chevron-down" class="chevron w-5 h-5 transition-transform"></i>
-        </button>
-        <div class="accordion-content px-8 pt-4">
-            <p class="text-sm text-slate-600 mb-4">Certificación de cumplimiento de requisitos para el Régimen Tributario Especial según normativa DIAN.</p>
-            <a href="2. CERTIFICADO DE CUMPLIMIENTO RTE FUNDACIÓN MISION TRES_0001_0001 (1).pdf" download class="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline">
-                <i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)
-            </a>
-        </div>
-    </div>
-
-    <div class="accordion-item border border-slate-200 rounded-2xl overflow-hidden">
-        <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition-colors" onclick="toggleAccordion(this)">
-            <span class="font-bold flex items-center gap-3"><i data-lucide="check-square" class="text-blue-600 w-5 h-5"></i> 5. Acta de Autorización RL</span>
-            <i data-lucide="chevron-down" class="chevron w-5 h-5 transition-transform"></i>
-        </button>
-        <div class="accordion-content px-8 pt-4">
-            <p class="text-sm text-slate-600 mb-4">Acta número 27 que contiene la autorización al Representante Legal de la fundación.</p>
-            <a href="5. ACTA N 27 - AUTORIZACIÓN RL FMT.pdf" download class="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline">
-                <i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)
-            </a>
-        </div>
-    </div>
-
-</div>
+                    <div class="accordion-item border-2 border-brandBlue rounded-2xl overflow-hidden bg-white">
+                        <button class="w-full px-8 py-5 text-left flex justify-between items-center bg-brandYellow/10 hover:bg-brandYellow/20 transition-colors" onclick="toggleAccordion(this)">
+                            <span class="font-bold flex items-center gap-3 text-brandBlue"><i data-lucide="check-square" class="text-brandRed w-5 h-5"></i> 5. Acta de Autorización RL</span>
+                            <i data-lucide="chevron-down" class="chevron w-5 h-5 text-brandBlue transition-transform"></i>
+                        </button>
+                        <div class="accordion-content px-8 pt-4">
+                            <p class="text-sm text-slate-600 mb-4 font-medium">Acta número 27 que contiene la autorización al Representante Legal de la fundación.</p>
+                            <a href="5. ACTA N 27 - AUTORIZACIÓN RL FMT.pdf" download class="inline-flex items-center gap-2 text-brandRed font-extrabold text-sm hover:underline">
+                                <i data-lucide="download" class="w-4 h-4"></i> Descargar Documento (PDF)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Contenido otros años (Ocultos por defecto) -->
-            <div id="content-2024" class="year-content hidden space-y-4 max-w-4xl mx-auto">
-                <p class="text-center py-10 text-slate-400 italic font-medium">Cargando archivos del archivo 2024...</p>
+            <div id="content-2027" class="year-content hidden space-y-4 max-w-4xl mx-auto">
+                <p class="text-center py-20 text-brandBlue italic font-bold text-xl">Próximamente archivos correspondientes al 2027.</p>
             </div>
-            <div id="content-2023" class="year-content hidden space-y-4 max-w-4xl mx-auto">
-                <p class="text-center py-10 text-slate-400 italic font-medium">Cargando archivos del archivo 2023...</p>
+            <div id="content-2028" class="year-content hidden space-y-4 max-w-4xl mx-auto">
+                <p class="text-center py-20 text-brandBlue italic font-bold text-xl">Próximamente archivos correspondientes al 2028.</p>
             </div>
         </div>
     </section>
 
-
-
-    
-    <!-- CONTACTO Y CIERRE (EMBUDO: ACCIÓN) -->
-    <section id="contacto" class="py-24 relative overflow-hidden">
+    <!-- CONTACTO Y CIERRE -->
+    <section id="contacto" class="py-24 relative overflow-hidden bg-white">
         <div class="max-w-4xl mx-auto px-6 text-center" data-aos="zoom-in">
-            <h2 class="text-4xl lg:text-6xl font-black text-slate-900 mb-8">¿Listo para ser parte del <span class="text-blue-600">cambio</span>?</h2>
-            <p class="text-lg text-slate-600 mb-12"> cada oración cuenta. Únase hoy a nuestra misión  y ayúdenos a llegar a más familias.</p>
+            <h2 class="text-4xl lg:text-6xl font-black text-slate-900 mb-8">¿Listo para ser parte del <span class="text-brandBlue">cambio</span>?</h2>
+            <p class="text-lg text-slate-600 mb-12 font-medium"> cada oración cuenta. Únase hoy a nuestra misión  y ayúdenos a llegar a más familias.</p>
             
-            <div class="bg-white p-8 lg:p-12 rounded-[48px] shadow-2xl border border-slate-100 flex flex-col md:flex-row items-center gap-8 justify-between">
+            <div class="bg-brandBlue p-8 lg:p-12 rounded-[48px] shadow-2xl border-8 border-brandYellow flex flex-col md:flex-row items-center gap-8 justify-between">
                 <div class="text-left">
-                    <p class="text-sm font-bold text-blue-600 uppercase mb-2">Canales Directos</p>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-4">Contáctenos hoy mismo</h4>
-                    <div class="space-y-2 text-slate-500 font-medium">
-                        <p class="flex items-center gap-3"><i data-lucide="phone" class="w-5 h-5 text-blue-600"></i> +57 304 5510438</p>
-                        <p class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5 text-blue-600"></i> 
-oralca777@gmail.com</p>
+                    <p class="text-sm font-bold text-brandYellow uppercase mb-2">Canales Directos</p>
+                    <h4 class="text-2xl font-bold text-white mb-4">Contáctenos hoy mismo</h4>
+                    <div class="space-y-2 text-blue-100 font-bold">
+                        <p class="flex items-center gap-3"><i data-lucide="phone" class="w-5 h-5 text-brandYellow"></i> +57 304 5510438</p>
+                        <p class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5 text-brandYellow"></i> oralca777@gmail.com</p>
                     </div>
                 </div>
                 <div class="w-full md:w-auto">
                     <a href="https://wa.me/573045510438?text=Hola,%20deseo%20realizar%20una%20donación%20y%20apoyar%20la%20labor%20de%20la%20Fundación%20Misión%20TRES" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   class="inline-flex items-center justify-center px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-green-200/50 gap-2">
-    <i data-lucide="message-circle" class="w-5 h-5"></i>
-    Donar Ahora
-</a>
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="inline-flex items-center justify-center px-10 py-5 bg-brandYellow hover:bg-white text-brandBlue font-black rounded-full transition-all duration-300 shadow-xl gap-3 text-lg uppercase tracking-wider">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+                        Donar Ahora
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white py-12">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="grid md:grid-cols-3 gap-12 items-center">
-            
-            <div>
-                <h3 class="text-2xl font-bold mb-4">Fundación Misión TRES</h3>
-                <p class="text-slate-400 text-sm">Restaurando el tejido social en las comunidades más vulnerables.</p>
-            </div>
-
-            <div class="flex flex-col items-center">
-                <h4 class="font-bold mb-6 uppercase tracking-widest text-xs text-slate-500">Síguenos en nuestras redes</h4>
-                <div class="flex gap-6">
-                    <a href="https://www.facebook.com/paztorlando" target="_blank" rel="noopener noreferrer" 
-                       class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-blue-600 transition-all duration-300 group">
-                        <i data-lucide="facebook" class="w-6 h-6 group-hover:scale-110"></i>
-                    </a>
-
-                    <a href="https://www.youtube.com/@orlandoalvaradocardo/featured" target="_blank" rel="noopener noreferrer" 
-                       class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-all duration-300 group">
-                        <i data-lucide="youtube" class="w-6 h-6 group-hover:scale-110"></i>
-                    </a>
+    <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 items-center">
+                
+                <!-- Columna 1: Logo y Descripción -->
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-3">
+                        <img src="https://i.imgur.com/mMXD5Jn.png" alt="Logo Fundación" class="h-12 w-auto brightness-0 invert">
+                        <h3 class="text-xl font-bold leading-tight">Fundación<br>Misión TRES</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                        Restaurando el tejido social en las comunidades más vulnerables de Colombia con amor y fe.
+                    </p>
                 </div>
-            </div>
 
-            <div class="text-right">
-                <p class="text-slate-400 text-sm">&copy; 2026 Fundación Misión TRES.</p>
-                <p class="text-slate-500 text-xs mt-2">Santiago de Cali, Colombia</p>
-            </div>
+                <!-- Columna 2: Redes Sociales -->
+                <div class="flex flex-col items-center justify-center text-center">
+                    <h4 class="font-bold mb-6 uppercase tracking-[0.2em] text-[10px] text-brandYellow">Síguenos en nuestras redes</h4>
+                    <div class="flex gap-5">
+                        <a href="https://www.facebook.com/paztorlando" target="_blank" rel="noopener noreferrer" 
+                           class="w-12 h-12 bg-brandBlue rounded-full flex items-center justify-center hover:bg-brandYellow hover:text-slate-900 transition-all duration-300 group shadow-lg">
+                            <i data-lucide="facebook" class="w-6 h-6 group-hover:scale-110"></i>
+                        </a>
 
+                        <a href="https://www.youtube.com/@orlandoalvaradocardo/featured" target="_blank" rel="noopener noreferrer" 
+                           class="w-12 h-12 bg-brandRed rounded-full flex items-center justify-center hover:bg-brandYellow hover:text-slate-900 transition-all duration-300 group shadow-lg">
+                            <i data-lucide="youtube" class="w-6 h-6 group-hover:scale-110"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Columna 3: Copyright y Ubicación -->
+                <div class="flex flex-col items-center md:items-end text-center md:text-right gap-4">
+                    <div>
+                        <p class="text-slate-400 text-sm font-bold">&copy; 2026 Fundación Misión TRES.</p>
+                        <p class="text-slate-500 text-[10px] uppercase tracking-widest mt-1">Todos los derechos reservados</p>
+                    </div>
+                    <div class="flex flex-col items-center md:items-end gap-2">
+                        <span class="px-3 py-1 bg-brandYellow text-slate-900 text-[10px] font-black rounded flex items-center gap-1">
+                            <i data-lucide="map-pin" class="w-3 h-3"></i> COLOMBIA
+                        </span>
+                        <p class="text-slate-500 text-xs font-semibold">Santiago de Cali</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+
+    <!-- BOTÓN DE WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/573000000000?text=Hola,%20quisiera%20más%20información%20sobre%20la%20Fundación" 
+       class="whatsapp-float pulse" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       id="whatsappButton">
+        <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.6-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.5-11.3 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.6-9.3 1.9-3.7 1-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 34.9 2.2 10.6-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path>
+        </svg>
+    </a>
+
+   
+</body>
+
+
+ <script>
+        // Inicializar los iconos de Lucide (importante para Facebook/Youtube)
+        lucide.createIcons();
+
+        // Manejo de eventos del botón
+        const wpBtn = document.getElementById('whatsappButton');
+        wpBtn.addEventListener('click', () => {
+            console.log("Chat abierto");
+        });
+    </script>
 
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -381,15 +588,25 @@ oralca777@gmail.com</p>
         // Inicializar Iconos
         lucide.createIcons();
 
-        // Inicializar Swiper
-        const swiper = new Swiper(".mySwiper", {
+        // Carrusel Hero
+        const heroSwiper = new Swiper(".hero-swiper", {
+            loop: true,
+            effect: "fade",
+            autoplay: { delay: 6000, disableOnInteraction: false },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        });
+
+        // Carrusel Proyectos
+        const projectSwiper = new Swiper(".mySwiper", {
             loop: true,
             spaceBetween: 20,
             autoplay: { delay: 4000, disableOnInteraction: false },
-            navigation: {
-                nextEl: ".swiper-next",
-                prevEl: ".swiper-prev",
-            },
+            navigation: { nextEl: ".swiper-next", prevEl: ".swiper-prev" },
+            breakpoints: {
+                640: { slidesPerView: 1 },
+                1024: { slidesPerView: 2 }
+            }
         });
 
         // Lógica de Acordeón
@@ -397,8 +614,26 @@ oralca777@gmail.com</p>
             const item = button.parentElement;
             item.classList.toggle('active');
         }
+
+        // Lógica de Tabs CORREGIDA
+        function showYear(year, btn) {
+            // Actualizar botones
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('active', 'bg-brandBlue', 'text-white', 'shadow-lg');
+                b.classList.add('text-brandBlue');
+            });
+            btn.classList.add('active', 'bg-brandBlue', 'text-white', 'shadow-lg');
+            btn.classList.remove('text-brandBlue');
+
+            // Actualizar contenidos
+            document.querySelectorAll('.year-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            const selectedContent = document.getElementById('content-' + year);
+            if(selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+        }
     </script>
 </body>
 </html>
-
-
