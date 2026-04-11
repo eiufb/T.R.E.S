@@ -157,26 +157,34 @@
     </script>
 
     <!-- NAVEGACIÓN -->
-    <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-           <div class="flex items-center gap-3">
-            <div class="overflow-hidden">
-                <img src="https://imgur.com/mMXD5Jn.png" alt="Logo Misión TRES" class="h-36 w-auto object-contain">
+   <nav class="fixed top-0 w-full z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+        
+        <div class="flex items-center gap-3">
+            <div class="flex items-center">
+                <img src="https://imgur.com/mMXD5Jn.png" 
+                     alt="Logo Misión TRES" 
+                     /* h-20 lo mantiene dentro de los 96px del nav cómodamente */
+                     /* scale-110 lo agranda un poco visualmente sin romper el layout */
+                     class="h-20 w-auto object-contain transform hover:scale-105 transition-transform duration-300">
             </div>
-            <span class="font-bold text-xl tracking-tight uppercase">
-                Misión <span class="text-brandBlue">T.R.E.S</span>
-            </span>
         </div>
-            <div class="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-wider text-slate-600">
-                <a href="#inicio" class="hover:text-brandBlue transition-colors">Inicio</a>
-                <a href="#nosotros" class="hover:text-brandBlue transition-colors">Nosotros</a>
-                <a href="#proyectos" class="hover:text-brandBlue transition-colors">Proyectos</a>
-                <a href="#transparencia" class="hover:text-brandBlue transition-colors">Transparencia</a>
-                <a href="#contacto" class="bg-brandBlue text-white px-6 py-3 rounded-full hover:bg-brandRed transition-all shadow-lg shadow-brandBlue/20">Donar Ahora</a>
-            </div>
-            <button class="lg:hidden text-brandBlue"><i data-lucide="menu"></i></button>
-        </div>
-    </nav>
+
+        <div class="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-wider text-slate-600">
+            <a href="#inicio" class="hover:text-brandBlue transition-colors">Inicio</a>
+            <a href="#nosotros" class="hover:text-brandBlue transition-colors">Nosotros</a>
+            <a href="#proyectos" class="hover:text-brandBlue transition-colors">Proyectos</a>
+            <a href="#transparencia" class="hover:text-brandBlue transition-colors">Transparencia</a>
+          <a href="#contacto" class="bg-brandBlue text-white px-6 py-3 rounded-full hover:bg-brandRed transition-all shadow-lg shadow-brandBlue/20">
+    Únete ahora
+</a>
+       </div>
+
+        <button class="lg:hidden text-brandBlue">
+            <i data-lucide="menu"></i>
+        </button>
+    </div>
+</nav>
 
     <!-- HERO SECTION CON CARRUSEL INTERACTIVO -->
     <section id="inicio" class="relative h-screen min-h-[600px] overflow-hidden">
@@ -193,7 +201,7 @@
     Restaurando el <span class="text-brandYellow italic">Tejido Social</span> de Colombia.
 </h1>
 <p class="text-lg text-slate-200 mb-10 leading-relaxed max-w-xl">
-    En Misión TRES ejecutamos estrategias espirituales y materiales para restaurar la calidad de vida de las comunidades más vulnerables, actuando con responsabilidad y sin proselitismos para ser un instrumento de bendición.
+    En Misión T.R.E.S. ejecutamos estrategias espirituales y materiales para restaurar la calidad de vida de las comunidades más vulnerables, actuando con responsabilidad y sin proselitismos para ser un instrumento de bendición.
 </p>
                                 <div class="flex flex-wrap gap-4">
                                     <a href="#proyectos" class="bg-brandBlue text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-brandRed transition-all shadow-xl shadow-brandBlue/30">
@@ -272,29 +280,21 @@
             
             <div class="relative" data-aos="fade-right">
                 <div class="relative bg-white rounded-[40px] overflow-hidden shadow-2xl border-4 border-brandBlue">
-                    <img src="https://i.imgur.com/cwrm8Ha.jpg" alt="Visión Fundación" class="w-full h-64 lg:h-[600px] object-cover">
+                    <img src="https://i.imgur.com/cwrm8Ha.jpg" alt="Impacto Fundación" class="w-full h-64 lg:h-[600px] object-cover">
                     
-                    <div class="absolute bottom-8 right-8 bg-brandYellow p-6 rounded-3xl shadow-xl max-w-[280px] border-2 border-brandBlue" data-aos="zoom-in">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="bg-brandBlue text-white p-2 rounded-lg">
-                                <i data-lucide="eye" class="w-5 h-5"></i>
-                            </div>
-                            <span class="font-bold text-brandBlue uppercase tracking-wider text-sm">Visión</span>
-                        </div>
-                        <p class="text-xs text-brandBlue font-medium leading-relaxed">
-                            La Fundación Misión TRES se propone restaurar, la calidad de vida de las familias en las comunas con mayor pobreza y vulnerabilidad de Cali.
-                        </p>
-                    </div>
+                    
                 </div>
             </div>
 
             <div data-aos="fade-left">
-                <span class="inline-block px-4 py-1 rounded-full bg-brandRed text-white text-xs font-bold uppercase mb-6 tracking-widest">Fundación Misión TRES</span>
+                <span class="inline-block px-4 py-1 rounded-full bg-brandRed text-white text-xs font-bold uppercase mb-6 tracking-widest">
+                    Fundación Misión TRES
+                </span>
                 <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-8 leading-tight">
                     Restaurando el <span class="text-brandBlue italic">Tejido Social</span>.
                 </h2>
                 
-                <div class="space-y-10">
+                <div class="space-y-10 mb-10">
                     <div class="flex gap-5">
                         <div class="flex-shrink-0 w-12 h-12 bg-brandBlue text-white rounded-2xl flex items-center justify-center shadow-lg">
                             <i data-lucide="target" class="w-6 h-6"></i>
@@ -302,7 +302,19 @@
                         <div>
                             <h4 class="font-bold text-xl text-brandBlue mb-2">Misión</h4>
                             <p class="text-slate-600 text-sm leading-relaxed">
-                               La Fundación Misión TRES busca mejorar la calidad de vida de las comunidades mediante estrategias espirituales y materiales, adaptadas a la realidad específica de cada población. Su labor se fundamenta en principios bíblicos con el objetivo final de restaurar el tejido social.
+                                Buscamos mejorar la calidad de vida de las comunidades mediante estrategias espirituales y materiales. Nuestra labor se fundamenta en principios bíblicos para restaurar el tejido social.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-5">
+                        <div class="flex-shrink-0 w-12 h-12 bg-brandBlue text-white rounded-2xl flex items-center justify-center shadow-lg">
+                            <i data-lucide="eye" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl text-brandBlue mb-2">Visión</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Ser un referente de transformación integral en Cali, logrando que las familias en situación de pobreza alcancen una vida digna y restaurada.
                             </p>
                         </div>
                     </div>
@@ -314,18 +326,19 @@
                         <div>
                             <h4 class="font-bold text-xl text-brandRed mb-2">Propósito</h4>
                             <p class="text-slate-600 text-sm leading-relaxed">
-                                Actuamos con conciencia y responsabilidad ante la indiferencia social. Nos comprometemos a ser un instrumento de bendición para los más vulnerables, trabajando sin proselitismos y enfocados plenamente en el bienestar del prójimo.
+                                Actuamos con responsabilidad ante la indiferencia social. Somos un instrumento de bendición enfocado plenamente en el bienestar del prójimo sin proselitismos.
                             </p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="pt-4">
-                        <p class="text-slate-500 text-xs border-l-4 border-brandYellow pl-4 italic font-semibold">
-                            Comprometidos con el logro de nuestra visión y misión bajo la guía del creador.
-                        </p>
-                    </div>
+                <div class="pt-4 border-t border-slate-200">
+                    <p class="text-slate-500 text-xs border-l-4 border-brandYellow pl-4 italic font-semibold">
+                        "Comprometidos con el logro de nuestra visión y misión bajo la guía del creador."
+                    </p>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
@@ -588,8 +601,8 @@
     <!-- CONTACTO Y CIERRE -->
     <section id="contacto" class="py-24 relative overflow-hidden bg-white">
         <div class="max-w-4xl mx-auto px-6 text-center" data-aos="zoom-in">
-            <h2 class="text-4xl lg:text-6xl font-black text-slate-900 mb-8">¿Listo para ser parte del <span class="text-brandBlue">cambio</span>?</h2>
-            <p class="text-lg text-slate-600 mb-12 font-medium"> cada oración cuenta. Únase hoy a nuestra misión  y ayúdenos a llegar a más familias.</p>
+                <h5 class="text-4xl lg:text-6xl font-black text-slate-800 mb-7">tranfomemos juntos a  <span class="text-brandBlue">colombia </span>?</h5>
+            <p class="text-lg text-slate-600 mb-12 font-medium"> Cada aporte , Cada gesto, Cada oración nos ayuda a llegar a mas familias </p>
             
 
 
@@ -602,7 +615,7 @@
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-2">Nombre Completo</label>
+          <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-2">Nombre y Apellido </label>
           <input type="text" id="nombre" name="nombre" required placeholder="Juan Pérez"
             class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all">
         </div>
@@ -616,7 +629,7 @@
 
       <div>
         <label for="telefono" class="block text-sm font-semibold text-gray-700 mb-2">WhatsApp / Teléfono</label>
-        <input type="tel" id="telefono" name="telefono" placeholder="+54 9..."
+        <input type="tel" id="telefono" name="telefono" placeholder="+57..."
           class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all">
       </div>
 
@@ -625,9 +638,9 @@
         <select id="tipo_donacion" name="tipo_donacion" required onchange="actualizarPlaceholder()"
           class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none transition-all cursor-pointer">
           <option value="" disabled selected>Selecciona una categoría</option>
-          <option value="Dinero">Donación Económica</option>
-          <option value="Trabajo">Tiempo / Trabajo Profesional</option>
           <option value="Materiales">Materiales o Materia Prima</option>
+          <option value="Trabajo">Tiempo / Trabajo Profesional</option>
+          <option value="Dinero">Donación Económica</option>
         </select>
       </div>
 
@@ -696,13 +709,7 @@
                     </div>
                 </div>
                 <div class="w-full md:w-auto">
-                    <a href="https://wa.me/573045510438?text=Hola,%20deseo%20realizar%20una%20donación%20y%20apoyar%20la%20labor%20de%20la%20Fundación%20Misión%20TRES" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       class="inline-flex items-center justify-center px-10 py-5 bg-brandYellow hover:bg-white text-brandBlue font-black rounded-full transition-all duration-300 shadow-xl gap-3 text-lg uppercase tracking-wider">
-                        <i data-lucide="message-circle" class="w-6 h-6"></i>
-                        Donar Ahora
-                    </a>
+                    
                 </div>
             </div>
         </div>
