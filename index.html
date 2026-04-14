@@ -149,46 +149,7 @@
 <body class="text-slate-900">
 
     
-    <script>
-        // Script para manejar el evento de clic
-        document.getElementById('whatsappButton').addEventListener('click', function() {
-            console.log("El usuario ha iniciado un chat de WhatsApp");
-        });
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-
-    // Función para alternar el menú
-    const toggleMenu = () => {
-        mobileMenu.classList.toggle('hidden');
-        
-        // Cambiar icono si usas Lucide
-        const isExpanded = !mobileMenu.classList.contains('hidden');
-        if (isExpanded) {
-            menuIcon.setAttribute('data-lucide', 'x');
-        } else {
-            menuIcon.setAttribute('data-lucide', 'menu');
-        }
-        lucide.createIcons(); // Refresca los iconos
-    };
-
-    menuBtn.addEventListener('click', toggleMenu);
-
-    // Cerrar el menú al hacer clic en cualquier enlace
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            menuIcon.setAttribute('data-lucide', 'menu');
-            lucide.createIcons();
-        });
-    });
-});
-
-    </script>
+    
 
     <!-- NAVEGACIÓN -->
     <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 shadow-md">
@@ -891,6 +852,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedContent.classList.remove('hidden');
             }
         }
+    </script>
+
+    <script>
+        // Script para manejar el evento de clic
+        document.getElementById('whatsappButton').addEventListener('click', function() {
+            console.log("El usuario ha iniciado un chat de WhatsApp");
+        });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    // Función para alternar el menú
+    const toggleMenu = () => {
+        mobileMenu.classList.toggle('hidden');
+        
+        // Cambiar icono si usas Lucide
+        const isExpanded = !mobileMenu.classList.contains('hidden');
+        if (isExpanded) {
+            menuIcon.setAttribute('data-lucide', 'x');
+        } else {
+            menuIcon.setAttribute('data-lucide', 'menu');
+        }
+        lucide.createIcons(); // Refresca los iconos
+    };
+
+    menuBtn.addEventListener('click', toggleMenu);
+
+    // Cerrar el menú al hacer clic en cualquier enlace
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            menuIcon.setAttribute('data-lucide', 'menu');
+            lucide.createIcons();
+        });
+    });
+});
+
     </script>
 </body>
 </html>
