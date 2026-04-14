@@ -627,34 +627,36 @@
 <section class="py-12 px-4 bg-gray-50">
   <div class="max-w-2xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100">
     
-    <form action="https://formspree.io/f/info@fundacionmisiontres.com" method="POST" class="p-8 space-y-6">
+    <form action="https://mail.hostinger.com/f/info@fundacionmisiontres.com" method="POST" class="p-8 space-y-6">
       
       <input type="hidden" name="_subject" value="Nueva colaboración - Fundación Misión Tres">
+      
+      <input type="text" name="_gotcha" style="display:none">
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-2">Nombre y Apellido </label>
+          <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-2">Nombre y Apellido</label>
           <input type="text" id="nombre" name="nombre" required placeholder="Juan Pérez"
-            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all">
+            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all">
         </div>
         
         <div>
           <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Correo Electrónico</label>
           <input type="email" id="email" name="email" required placeholder="juan@ejemplo.com"
-            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all">
+            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all">
         </div>
       </div>
 
       <div>
         <label for="telefono" class="block text-sm font-semibold text-gray-700 mb-2">WhatsApp / Teléfono</label>
         <input type="tel" id="telefono" name="telefono" placeholder="+57..."
-          class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all">
+          class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all">
       </div>
 
       <div>
         <label for="tipo_donacion" class="block text-sm font-semibold text-gray-700 mb-2">¿Cómo deseas colaborar?</label>
         <select id="tipo_donacion" name="tipo_donacion" required onchange="actualizarPlaceholder()"
-          class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none transition-all cursor-pointer">
+          class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-600 outline-none transition-all cursor-pointer">
           <option value="" disabled selected>Selecciona una categoría</option>
           <option value="Materiales">Materiales o Materia Prima</option>
           <option value="Trabajo">Tiempo / Trabajo Profesional</option>
@@ -666,16 +668,16 @@
         <label for="detalles" id="label_detalles" class="block text-sm font-semibold text-gray-700 mb-2">Detalles del aporte</label>
         <textarea id="detalles" name="detalles" rows="4" required
           placeholder="Cuéntanos más sobre cómo te gustaría ayudar..."
-          class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"></textarea>
+          class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all resize-none"></textarea>
       </div>
 
       <button type="submit" 
         class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-blue-200">
-        Enviar 
+        Enviar Colaboración
       </button>
 
       <p class="text-center text-xs text-gray-400 mt-4">
-        Tus datos están protegidos y solo se usarán para coordinar la donación.
+        Tus datos están protegidos y solo se usarán para fines de la Fundación.
       </p>
     </form>
   </div>
@@ -687,20 +689,27 @@
     const detalles = document.getElementById('detalles');
     const label = document.getElementById('label_detalles');
 
-    if (tipo === 'Dinero') {
-      label.innerText = '¿Qué monto o frecuencia tienes en mente?';
-      detalles.placeholder = 'Ej: Donación única de $5000 o aporte mensual...';
-    } else if (tipo === 'Trabajo') {
-      label.innerText = '¿En qué área puedes colaborar?';
-      detalles.placeholder = 'Ej: Soy electricista, diseño web, o puedo ayudar en logística...';
-    } else if (tipo === 'Materiales') {
-      label.innerText = '¿Qué materiales deseas entregar?';
-      detalles.placeholder = 'Ej: 5 bolsas de cemento, herramientas, materia prima, etc...';
+    const opciones = {
+      'Dinero': {
+        label: '¿Qué monto o frecuencia tienes en mente?',
+        placeholder: 'Ej: Donación única o aporte mensual...'
+      },
+      'Trabajo': {
+        label: '¿En qué área puedes colaborar?',
+        placeholder: 'Ej: Electricidad, diseño, logística, etc...'
+      },
+      'Materiales': {
+        label: '¿Qué materiales deseas entregar?',
+        placeholder: 'Ej: Herramientas, materia prima, insumos...'
+      }
+    };
+
+    if (opciones[tipo]) {
+      label.innerText = opciones[tipo].label;
+      detalles.placeholder = opciones[tipo].placeholder;
     }
   }
 </script>
-
-
 
 
 
