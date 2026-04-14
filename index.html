@@ -154,37 +154,76 @@
         document.getElementById('whatsappButton').addEventListener('click', function() {
             console.log("El usuario ha iniciado un chat de WhatsApp");
         });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    // Función para alternar el menú
+    const toggleMenu = () => {
+        mobileMenu.classList.toggle('hidden');
+        
+        // Cambiar icono si usas Lucide
+        const isExpanded = !mobileMenu.classList.contains('hidden');
+        if (isExpanded) {
+            menuIcon.setAttribute('data-lucide', 'x');
+        } else {
+            menuIcon.setAttribute('data-lucide', 'menu');
+        }
+        lucide.createIcons(); // Refresca los iconos
+    };
+
+    menuBtn.addEventListener('click', toggleMenu);
+
+    // Cerrar el menú al hacer clic en cualquier enlace
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            menuIcon.setAttribute('data-lucide', 'menu');
+            lucide.createIcons();
+        });
+    });
+});
+
     </script>
 
     <!-- NAVEGACIÓN -->
-    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <div class="flex items-center gap-4">
-    <div class="flex items-center">
-        <img src="https://imgur.com/1GVVE05.png" alt="Logo Misión TRES" class="h-12 w-auto object-contain">
-        
-        <div class="ml-3 flex flex-col">
-            <span class="text-slate-900 font-black text-lg leading-tight tracking-tight uppercase">
-                Fundación
-            </span>
-            <span class="text-brandBlue font-black text-xl leading-tight uppercase">
-                Misión T.R.E.S.
-            </span>
+            <div class="flex items-center">
+                <img src="https://imgur.com/1GVVE05.png" alt="Logo Misión TRES" class="h-12 w-auto object-contain">
+                <div class="ml-3 flex flex-col">
+                    <span class="text-slate-900 font-black text-lg leading-tight tracking-tight uppercase">Fundación</span>
+                    <span class="text-brandBlue font-black text-xl leading-tight uppercase">Misión T.R.E.S.</span>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+
         <div class="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-wider text-slate-600">
             <a href="#inicio" class="hover:text-brandBlue transition-colors">Inicio</a>
             <a href="#nosotros" class="hover:text-brandBlue transition-colors">Nosotros</a>
             <a href="#proyectos" class="hover:text-brandBlue transition-colors">Proyectos</a>
             <a href="#transparencia" class="hover:text-brandBlue transition-colors">Transparencia</a>
-          <a href="#contacto" class="bg-brandBlue text-white px-6 py-3 rounded-full hover:bg-brandRed transition-all shadow-lg shadow-brandBlue/20">
-    Únete ahora
-</a>
-       </div>
+            <a href="#contacto" class="bg-brandBlue text-white px-6 py-3 rounded-full hover:bg-brandRed transition-all shadow-lg shadow-brandBlue/20">Únete ahora</a>
+        </div>
 
-       <button id="mobile-menu-btn" class="md:hidden"><i data-lucide="menu"></i></button>
+        <button id="mobile-menu-btn" class="lg:hidden text-slate-900 p-2 focus:outline-none">
+            <i data-lucide="menu" id="menu-icon"></i>
+        </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 absolute w-full left-0 shadow-xl transition-all duration-300 ease-in-out">
+        <div class="flex flex-col p-6 gap-4 text-sm font-bold uppercase tracking-wider text-slate-600">
+            <a href="#inicio" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Inicio</a>
+            <a href="#nosotros" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Nosotros</a>
+            <a href="#proyectos" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Proyectos</a>
+            <a href="#transparencia" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Transparencia</a>
+            <a href="#contacto" class="mobile-link bg-brandBlue text-white px-6 py-3 rounded-full text-center mt-2">Únete ahora</a>
+        </div>
     </div>
 </nav>
 
