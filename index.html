@@ -165,21 +165,21 @@
         </div>
 
         <div class="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-wider text-slate-600">
-    <a href="#inicio" class="hover:text-brandBlue transition-colors">Inicio</a>
-    <a href="#nosotros" class="hover:text-brandBlue transition-colors">Nosotros</a>
-    <a href="#proyectos" class="hover:text-brandBlue transition-colors">Proyectos</a>
-    <a href="#transparencia" class="hover:text-brandBlue transition-colors">Transparencia</a>
-    
-    <a href="#registro-programas" class="flex items-center gap-2 bg-brandYellow text-brandBlue px-5 py-3 rounded-full hover:bg-slate-900 hover:text-white transition-all shadow-md font-black italic border border-brandBlue/10">
-        <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandRed opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-brandRed"></span>
-        </span>
-        Colombia Tierra Bendita 
-    </a>
+            <a href="#inicio" class="hover:text-brandBlue transition-colors">Inicio</a>
+            <a href="#nosotros" class="hover:text-brandBlue transition-colors">Nosotros</a>
+            <a href="#proyectos" class="hover:text-brandBlue transition-colors">Proyectos</a>
+            <a href="#transparencia" class="hover:text-brandBlue transition-colors">Transparencia</a>
+            
+            <a href="#registro-programas" class="flex items-center gap-2 bg-brandYellow text-brandBlue px-5 py-3 rounded-full hover:bg-slate-900 hover:text-white transition-all shadow-md font-black italic border border-brandBlue/10">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandRed opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-brandRed"></span>
+                </span>
+                Colombia Tierra Bendita 
+            </a>
 
-    <a href="#contacto" class="bg-brandBlue text-white px-6 py-3 rounded-full hover:bg-brandRed transition-all shadow-lg shadow-brandBlue/20">Únete ahora</a>
-</div>
+            <a href="#contacto" class="bg-brandBlue text-white px-6 py-3 rounded-full hover:bg-brandRed transition-all shadow-lg shadow-brandBlue/20">Únete ahora</a>
+        </div>
 
         <button id="mobile-menu-btn" class="lg:hidden text-slate-900 p-2 focus:outline-none">
             <i data-lucide="menu" id="menu-icon"></i>
@@ -192,15 +192,28 @@
             <a href="#nosotros" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Nosotros</a>
             <a href="#proyectos" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Proyectos</a>
             <a href="#transparencia" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Transparencia</a>
-            <a href="#contacto" class="mobile-link bg-brandBlue text-white px-6 py-3 rounded-full text-center mt-2">Únete ahora</a>
+            
+            <a href="#registro-programas" class="mobile-link flex items-center justify-center gap-3 bg-brandYellow text-brandBlue py-4 rounded-2xl shadow-md font-black italic border border-brandBlue/10 mt-2">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandRed opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brandRed"></span>
+                </span>
+                Colombia Tierra Bendita
+            </a>
+
+            <a href="#contacto" class="mobile-link bg-brandBlue text-white px-6 py-4 rounded-2xl text-center shadow-lg">Únete ahora</a>
         </div>
     </div>
 </nav>
 
+<section class="h-24 lg:h-32"></section> ```
 
-<section class="h-39"></section> <!-- Espacio para la navegación fija -->
+### Cambios realizados:
+1.  **Agregado al menú móvil**: He insertado el enlace de "Colombia Tierra Bendita" justo antes del botón de "Únete ahora".
+2.  **Diseño optimizado para pulgar**: En el móvil, el botón ahora es más alto (`py-4`) y tiene esquinas `rounded-2xl` para que sea más fácil de presionar con el dedo.
+3.  **Ajuste de espaciador**: Cambié la clase `h-39` (que no es estándar en Tailwind por defecto) por un espaciado responsivo para que el contenido no quede muy separado del menú en móviles.
 
-
+¡Listo para copiar y pegar!
 
     <!-- HERO SECTION CON CARRUSEL INTERACTIVO -->
     <section id="inicio" class="relative h-screen min-h-[600px] overflow-hidden">
