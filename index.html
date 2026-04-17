@@ -867,23 +867,28 @@ async function handleFormSubmit(event, categoria) {
     btn.disabled = true;
 
     const formData = new FormData(form);
-    // Agregamos los campos adicionales
-    formData.append('categoria', categoria); 
-    formData.append('fecha_sistema', new Date().toLocaleString());
+    
+    // IMPORTANTE: Los nombres aquí deben coincidir con 'p.categoria' en tu .gs
+    const params = new URLSearchParams();
+    formData.forEach((value, key) => {
+        params.append(key, value);
+    });
+    params.append('categoria', categoria);
 
-    // TU URL ACTUALIZADA
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbx85C3UIBNsHNrrw_xMDUUVHy5MISoD95xYp_nbmpDGwK-ZJWHSR66_y_eFiOKRPShcgA/exec'; 
+    // ESTA ES LA URL CORRECTA (LA ÚLTIMA QUE GENERASTE)
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyd8YaZQfMClaqB-gEnO1h2oaKgU65TI0CoN3Eu-vn4d8UxM4-7VaAmyA1qPXIvOzWsIw/exec'; 
 
     try {
         await fetch(scriptURL, {
             method: 'POST',
-            mode: 'no-cors', // Mantiene la compatibilidad con Google Apps Script
-            body: new URLSearchParams(formData)
+            mode: 'no-cors', 
+            body: params // Enviamos los parámetros limpios
         });
 
         // Ocultar formularios y mostrar éxito
         document.getElementById('form-1').classList.add('hidden');
         document.getElementById('form-2').classList.add('hidden');
+        document.getElementById('form-container').classList.add('hidden');
         
         const successBox = document.getElementById('success-message');
         const messagePara = document.getElementById('message-text');
@@ -895,13 +900,13 @@ async function handleFormSubmit(event, categoria) {
 
     } catch (error) {
         console.error('Error:', error);
-        alert("Hubo un error al conectar con el servidor. Por favor intenta de nuevo.");
+        alert("Hubo un error al conectar con el servidor.");
         btn.innerText = originalText;
         btn.disabled = false;
     }
 }
-</script> 
-        
+</script>
+    
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
