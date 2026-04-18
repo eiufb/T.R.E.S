@@ -835,78 +835,71 @@
     </div>
 </section>
 
-<script>
+    <script>
 function showForm(type) {
-    const container = document.getElementById('form-container');
-    const form1 = document.getElementById('form-1');
-    const form2 = document.getElementById('form-2');
-    const successMsg = document.getElementById('success-message');
-
-    container.classList.remove('hidden');
-    successMsg.classList.add('hidden');
-    
-    if(type === 1) {
-        form1.classList.remove('hidden');
-        form2.classList.add('hidden');
-    } else {
-        form2.classList.remove('hidden');
-        form1.classList.add('hidden');
-    }
-
-    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    if (window.lucide) lucide.createIcons();
+  const container = document.getElementById('form-container');
+  const form1 = document.getElementById('form-1');
+  const form2 = document.getElementById('form-2');
+  const successMsg = document.getElementById('success-message');
+  container.classList.remove('hidden');
+  successMsg.classList.add('hidden');
+  if(type === 1) {
+    form1.classList.remove('hidden');
+    form2.classList.add('hidden');
+  } else {
+    form2.classList.remove('hidden');
+    form1.classList.add('hidden');
+  }
+  container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (window.lucide) lucide.createIcons();
 }
 
 async function handleFormSubmit(event, categoria) {
-    event.preventDefault();
-    const form = event.target;
-    const btn = form.querySelector('button[type="submit"]');
-    const originalText = btn.innerText;
+  event.preventDefault();
+  const form = event.target;
+  const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.innerText;
+  btn.innerText = "PROCESANDO REGISTRO...";
+  btn.disabled = true;
 
-    btn.innerText = "PROCESANDO REGISTRO...";
-    btn.disabled = true;
+  // Recoge los valores del formulario
+  const formData = new FormData(form);
+  
+  // Construye una URL con los parámetros necesarios
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzbWjSwynJgnATJ_SboP6fwLnIusOkGB1d5yn6xpgdYaslUh6tH_6G1UjQrW6ZlfTbP0w/exec'; 
+  const params = new URLSearchParams();
+  
+  formData.forEach((value, key) => {
+    params.append(key, value);
+  });
+  
+  params.append('categoria', categoria);
 
-    const formData = new FormData(form);
-    
-    // IMPORTANTE: Los nombres aquí deben coincidir con 'p.categoria' en tu .gs
-    const params = new URLSearchParams();
-    formData.forEach((value, key) => {
-        params.append(key, value);
+  try {
+    await fetch(scriptURL, {
+      method: 'POST',
+      mode: 'no-cors', 
+      body: params // Envía los parámetros limpios
     });
-    params.append('categoria', categoria);
 
-    // ESTA ES LA URL CORRECTA (LA ÚLTIMA QUE GENERASTE)
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzbWjSwynJgnATJ_SboP6fwLnIusOkGB1d5yn6xpgdYaslUh6tH_6G1UjQrW6ZlfTbP0w/exec'; 
+    // Ocultar formularios y mostrar éxito
+    document.getElementById('form-1').classList.add('hidden');
+    document.getElementById('form-2').classList.add('hidden');
+    document.getElementById('form-container').classList.add('hidden');
+    const successBox = document.getElementById('success-message');
+    const messagePara = document.getElementById('message-text');
+    messagePara.innerText = `¡Gloria a Dios! El registro en la categoría [${categoria}] se ha completado correctamente.`;
+    successBox.classList.remove('hidden');
 
-    try {
-        await fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors', 
-            body: params // Enviamos los parámetros limpios
-        });
-
-        // Ocultar formularios y mostrar éxito
-        document.getElementById('form-1').classList.add('hidden');
-        document.getElementById('form-2').classList.add('hidden');
-        document.getElementById('form-container').classList.add('hidden');
-        
-        const successBox = document.getElementById('success-message');
-        const messagePara = document.getElementById('message-text');
-        
-        messagePara.innerText = `¡Gloria a Dios! El registro en la categoría [${categoria}] se ha completado correctamente.`;
-        successBox.classList.remove('hidden');
-        
-        if (window.lucide) lucide.createIcons();
-
-    } catch (error) {
-        console.error('Error:', error);
-        alert("Hubo un error al conectar con el servidor.");
-        btn.innerText = originalText;
-        btn.disabled = false;
-    }
+    if (window.lucide) lucide.createIcons();
+  } catch (error) {
+    console.error('Error:', error);
+    alert("Hubo un error al conectar con el servidor.");
+    btn.innerText = originalText;
+    btn.disabled = false;
+  }
 }
 </script>
-    
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
