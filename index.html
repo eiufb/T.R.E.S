@@ -836,55 +836,56 @@
 </section>
 
     <script>
-function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var p = e.parameter;
-  
-  // 1. Guardar en Google Sheets
-  // Ajustamos el orden según tus formularios (Categoría, Nombres, Apellidos, ID, WhatsApp, Email, Congregación/Pastor, Ciudad/Depto, Compromiso)
-  sheet.appendRow([
-    new Date(), 
-    p.categoria,
-    p.nombres, 
-    p.apellidos, 
-    p.identificacion, 
-    p.whatsapp, 
-    p.email, 
-    p.congregacion || p.nombre_pastor, // Captura cualquiera de los dos campos
-    p.departamento, 
-    p.ciudad, 
-    p.compromiso || "N/A"
-  ]);
-  
-  // 2. Enviar Correo Corporativo
-  var destinatario = "info@fundacionmisiontres.com";
-  var asunto = "NUEVO REGISTRO: " + p.categoria + " - " + p.nombres + " " + p.apellidos;
-  
-  var cuerpoHtml = `
-    <div style="font-family: sans-serif; border: 1px solid #eee; padding: 20px; max-width: 600px;">
-      <h2 style="color: #1d4ed8;">Nuevo Registro en la Plataforma</h2>
-      <p><strong>Categoría:</strong> ${p.categoria}</p>
-      <hr>
-      <p><strong>Nombre completo:</strong> ${p.nombres} ${p.apellidos}</p>
-      <p><strong>Identificación:</strong> ${p.identificacion}</p>
-      <p><strong>WhatsApp:</strong> ${p.whatsapp}</p>
-      <p><strong>Email:</strong> ${p.email}</p>
-      <p><strong>Ubicación:</strong> ${p.ciudad}, ${p.departamento}</p>
-      ${p.categoria === 'Pastores' ? `<p><strong>Congregación:</strong> ${p.congregacion}</p><p><strong>Compromiso:</strong> ${p.compromiso}</p>` : `<p><strong>Pastor:</strong> ${p.nombre_pastor}</p>`}
-      <br>
-      <p style="font-size: 12px; color: #666;">Este es un mensaje automático generado desde el sitio web.</p>
-    </div>
-  `;
+async function handleFormSubmit(event, categoria) {
+    event.preventDefault();
+    const form = event.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
 
-  MailApp.sendEmail({
-    to: destinatario,
-    subject: asunto,
-    htmlBody: cuerpoHtml
-  });
-  
-  return ContentService.createTextOutput("Éxito").setMimeType(ContentService.MimeType.TEXT);
-}
-    </script>
+    btn.innerText = "PROCESANDO REGISTRO...";
+    btn.disabled = true;
+
+    const formData = new FormData(form);
+    const params = new URLSearchParams();
+    
+    formData.forEach((value, key) => {
+        params.append(key, value);
+    });
+    params.append('categoria', categoria);
+
+    // Reemplaza ESTA URL con la nueva que obtengas al re-implementar el script
+    const scriptURL = 'TU_NUEVA_URL_DE_GOOGLE_APPS_SCRIPT_AQUI'; 
+
+    try {
+        // Usamos 'cors' y enviamos vía POST para asegurar la recepción de datos
+        await fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors', 
+            body: params
+        });
+
+        // Ocultar formularios y mostrar éxito
+        form.classList.add('hidden');
+        document.getElementById('form-container').classList.remove('hidden'); // Asegura que se vea el contenedor
+        
+        const successBox = document.getElementById('success-message');
+        const messagePara = document.getElementById('message-text');
+        
+        // Limpiamos la vista de botones de selección
+        document.querySelector('.flex.flex-wrap.justify-center.gap-6').classList.add('hidden');
+        
+        messagePara.innerText = `¡Gloria a Dios! El registro en la categoría [${categoria}] se ha completado y enviado a nuestro equipo.`;
+        successBox.classList.remove('hidden');
+        
+        if (window.lucide) lucide.createIcons();
+
+    } catch (error) {
+        console.error('Error:', error);
+        alert("Hubo un error al enviar los datos. Por favor intenta de nuevo.");
+        btn.innerText = originalText;
+        btn.disabled = false;
+    }
+}    </script>
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
