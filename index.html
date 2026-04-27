@@ -144,6 +144,18 @@
                 display: none; /* Ocultar tooltip en móviles */
             }
         }
+
+
+@keyframes custom-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.02); background-color: #ffde59; } /* Ajusta al color exacto de brandYellow */
+}
+.animate-button-blink {
+  animation: custom-blink 1.5s infinite;
+}
+
+
+
     </style>
 </head>
 <body class="text-slate-900">
@@ -169,7 +181,6 @@
             <a href="#nosotros" class="hover:text-brandBlue transition-colors">Nosotros</a>
             <a href="#proyectos" class="hover:text-brandBlue transition-colors">Proyectos</a>
             <a href="#transparencia" class="hover:text-brandBlue transition-colors">Transparencia</a>
-            
             <a href="#registro-programas" class="flex items-center gap-2 bg-brandYellow text-brandBlue px-5 py-3 rounded-full hover:bg-slate-900 hover:text-white transition-all shadow-md font-black italic border border-brandBlue/10">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandRed opacity-75"></span>
@@ -177,12 +188,14 @@
                 </span>
                 Colombia Tierra Bendita 
             </a>
-
             <a href="#contacto" class="bg-brandBlue text-white px-6 py-3 rounded-full hover:bg-brandRed transition-all shadow-lg shadow-brandBlue/20">Únete ahora</a>
         </div>
 
-        <button id="mobile-menu-btn" class="lg:hidden text-slate-900 p-2 focus:outline-none">
-            <i data-lucide="menu" id="menu-icon"></i>
+        <button id="mobile-menu-btn" class="lg:hidden flex items-center gap-2 text-slate-900 p-2 focus:outline-none group">
+            <span class="text-[10px] font-black uppercase tracking-widest text-slate-500 group-hover:text-brandBlue transition-colors">Menú</span>
+            <div class="bg-slate-50 p-2 rounded-xl group-hover:bg-brandBlue/10 transition-all">
+                <i data-lucide="menu" id="menu-icon" class="w-6 h-6 text-brandBlue"></i>
+            </div>
         </button>
     </div>
 
@@ -193,13 +206,14 @@
             <a href="#proyectos" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Proyectos</a>
             <a href="#transparencia" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Transparencia</a>
             
-            <a href="#registro-programas" class="mobile-link flex items-center justify-center gap-3 bg-brandYellow text-brandBlue py-4 rounded-2xl shadow-md font-black italic border border-brandBlue/10 mt-2">
-                <span class="relative flex h-3 w-3">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandRed opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brandRed"></span>
-                </span>
-                Colombia Tierra Bendita
-            </a>
+            <a href="#registro-programas" class="animate-button-blink mobile-link flex items-center justify-center gap-3 bg-brandYellow text-brandBlue py-4 rounded-2xl shadow-md font-black italic border border-brandBlue/10 mt-2">
+    <span class="relative flex h-3 w-3">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandRed opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-brandRed"></span>
+    </span>
+    Ingresa a Colombia Tierra Bendita
+</a>
+
 
             <a href="#contacto" class="mobile-link bg-brandBlue text-white px-6 py-4 rounded-2xl text-center shadow-lg">Únete ahora</a>
         </div>
@@ -687,7 +701,7 @@
 
       <button type="submit" 
         class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-blue-200">
-        Enviar Colaboración
+        Enviar 
       </button>
 
       <p class="text-center text-xs text-gray-400 mt-4">
@@ -773,7 +787,7 @@
                 </div>
             </div>
 
-             <div id="form-container" class="max-w-3xl mx-auto bg-slate-50 p-8 lg:p-12 rounded-[3rem] shadow-2xl hidden" data-aos="zoom-in">
+            <div id="form-container" class="max-w-3xl mx-auto bg-slate-50 p-8 lg:p-12 rounded-[3rem] shadow-2xl hidden" data-aos="zoom-in">
                 
                 <form id="form-1" 
       action="https://formsubmit.co/info@fundacionmisiontres.com" 
@@ -796,10 +810,13 @@
                     
                     <div class="bg-brandBlue/5 p-6 rounded-2xl border-l-8 border-brandRed mt-6">
                         <p class="text-slate-800 text-sm leading-relaxed">
-                            <strong>Para terminar con éxito su registro no olvide enviar por el WhatsApp 3227721323 y en formato PDF solamente su fotocopia de cédula a color y copia de su RUT persona natural con actividad económica 9491.</strong>
-                        </p>
+    <strong>Para terminar con éxito su registro no olvide enviar por el WhatsApp 
+        <span class="text-brandRed text-base font-black">322 772 13 23</span> 
+        y en formato PDF solamente su fotocopia de cédula a color y copia de su RUT persona natural con actividad económica 9491.
+    </strong>
+</p>
                     </div>
-                    <button type="submit" class="w-full py-5 bg-brandBlue text-white font-black rounded-2xl hover:bg-brandRed transition-all shadow-lg mt-6">ENVIAR REGISTRO MINISTERIAL</button>
+                    <button type="submit" class="w-full py-5 bg-brandBlue text-white font-black rounded-2xl hover:bg-brandRed transition-all shadow-lg mt-6">ENVIAR</button>
                 </form>
 
                 <form id="form-2" 
@@ -819,18 +836,18 @@
                         <input type="text" name="departamento" placeholder="Departamento" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
                         <input type="text" name="ciudad" placeholder="Ciudad" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
                     </div>
-                    <button type="submit" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all shadow-lg mt-6">ENVIAR MI REGISTRO</button>
+                    <button type="submit" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all shadow-lg mt-6">ENVIAR </button>
                 </form>
 
                 <div id="success-message" class="hidden text-center py-10">
                     <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i data-lucide="check-circle" class="w-12 h-12"></i>
                     </div>
-                    <h4 class="text-3xl font-black text-slate-900 mb-4 uppercase italic">¡Envío Exitoso!</h4>
+                    <h4 class="text-3xl font-black text-slate-900 mb-4 uppercase italic">¡BIENVENIDO A COLOMBIA TIERRA BENDITA!</h4>
                     <p id="message-text" class="text-lg text-slate-600 font-medium mb-6"></p>
                     
                     <div class="bg-green-50 p-6 rounded-2xl border-2 border-green-200 mb-8">
-                        <p class="text-green-800 font-bold mb-4">¿No te has unido al grupo oficial?</p>
+                        <p class="text-green-800 font-bold mb-4">¡Ahora únete al grupo de WhatsApp para mantenerte informado y actualizado!</p>
                         <a href="https://chat.whatsapp.com/KYirebMdmpq7ghevWRzTVb" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-green-500 text-white rounded-xl font-black uppercase tracking-widest hover:bg-green-600 transition-all shadow-lg">
                             <i data-lucide="message-circle"></i> UNIRME AL WHATSAPP
                         </a>
@@ -899,6 +916,7 @@ async function handleFormSubmit(event, tipoRegistro) {
     }
 }
 </script>
+    
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
