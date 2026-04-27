@@ -788,88 +788,85 @@
             </div>
 
             <div id="form-container" class="max-w-3xl mx-auto bg-slate-50 p-8 lg:p-12 rounded-[3rem] shadow-2xl hidden" data-aos="zoom-in">
-                
-                <form id="form-1" 
-      action="https://formsubmit.co/info@fundacionmisiontres.com" 
-      method="POST"
-      class="hidden space-y-4" 
-      onsubmit="handleFormSubmit(event, 'Pastor o Ministro')">
-      
-                    <h3 class="text-2xl font-black text-brandBlue mb-6 uppercase border-b-4 border-brandYellow inline-block">Formulario para Pastor o Ministro</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" name="nombres" placeholder="Nombres completos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
-                        <input type="text" name="apellidos" placeholder="Apellidos completos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
-                        <input type="text" name="identificacion" placeholder="Número de identificación" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
-                        <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
-                        <input type="email" name="email" placeholder="Correo electrónico" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
-                        <input type="text" name="congregacion" placeholder="Nombre de congregación" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
-                        <input type="text" name="departamento" placeholder="Departamento" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
-                        <input type="text" name="ciudad" placeholder="Ciudad" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
-                    </div>
-                    <textarea name="compromiso" placeholder="Compromiso de nuevas almas en los próximos 1.000 días" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm h-32" required></textarea>
-                    
-                    <div class="bg-brandBlue/5 p-6 rounded-2xl border-l-8 border-brandRed mt-6">
-                        <p class="text-slate-800 text-sm leading-relaxed">
-    <strong>Para terminar con éxito su registro no olvide enviar por el WhatsApp 
-        <span class="text-brandRed text-base font-black">322 772 13 23</span> 
-        y en formato PDF solamente su fotocopia de cédula a color y copia de su RUT persona natural con actividad económica 9491.
-    </strong>
-</p>
-                    </div>
-                    <button type="submit" class="w-full py-5 bg-brandBlue text-white font-black rounded-2xl hover:bg-brandRed transition-all shadow-lg mt-6">ENVIAR</button>
-                </form>
+    
+    <form id="form-1" 
+          action="https://api.web3forms.com/submit" 
+          method="POST"
+          class="hidden space-y-4" 
+          onsubmit="handleFormSubmit(event, 'Pastor o Ministro')">
+        
+        <input type="hidden" name="access_key" value="683d7f43-01cf-4e33-948a-6303c1b1769a">
+        <input type="hidden" name="from_name" value="Registro: Pastor o Ministro">
+        <input type="hidden" name="subject" value="Nuevo Registro de Pastor/Ministro - Misión TRES">
 
-                <form id="form-2" 
-      action="https://formsubmit.co/info@fundacionmisiontres.com" 
-      method="POST"
-      class="hidden space-y-4" 
-      onsubmit="handleFormSubmit(event, 'Nuevo Creyente')">
+        <h3 class="text-2xl font-black text-brandBlue mb-6 uppercase border-b-4 border-brandYellow inline-block">Formulario para Pastor o Ministro</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="text" name="nombres" placeholder="Nombres completos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
+            <input type="text" name="apellidos" placeholder="Apellidos completos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
+            <input type="text" name="identificacion" placeholder="Número de identificación" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
+            <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
+            <input type="email" name="email" placeholder="Correo electrónico" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
+            <input type="text" name="congregacion" placeholder="Nombre de congregación" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
+            <input type="text" name="departamento" placeholder="Departamento" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
+            <input type="text" name="ciudad" placeholder="Ciudad" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm" required>
+        </div>
+        
+        <textarea name="compromiso" placeholder="Compromiso de nuevas almas en los próximos 1.000 días" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none shadow-sm h-32" required></textarea>
+        
+        <div class="bg-brandBlue/5 p-6 rounded-2xl border-l-8 border-brandRed mt-6">
+            <p class="text-slate-800 text-sm leading-relaxed">
+                <strong>Para terminar con éxito su registro no olvide enviar por el WhatsApp 
+                    <span class="text-brandRed text-base font-black">322 772 13 23</span> 
+                    y en formato PDF solamente su fotocopia de cédula a color y copia de su RUT persona natural con actividad económica 9491.
+                </strong>
+            </p>
+        </div>
+        <button type="submit" class="w-full py-5 bg-brandBlue text-white font-black rounded-2xl hover:bg-brandRed transition-all shadow-lg mt-6 uppercase">Enviar Registro Ministerial</button>
+    </form>
 
-                    <h3 class="text-2xl font-black text-brandRed mb-6 uppercase border-b-4 border-brandYellow inline-block">Formulario para Nuevo Creyente</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" name="nombres" placeholder="Nombres completos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
-                        <input type="text" name="apellidos" placeholder="Apellidos completos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
-                        <input type="text" name="identificacion" placeholder="Número de identificación" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
-                        <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
-                        <input type="email" name="email" placeholder="Correo electrónico" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
-                        <input type="text" name="nombre_pastor" placeholder="Nombre del pastor" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
-                        <input type="text" name="departamento" placeholder="Departamento" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
-                        <input type="text" name="ciudad" placeholder="Ciudad" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
-                    </div>
-                    <button type="submit" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all shadow-lg mt-6">ENVIAR </button>
-                </form>
+    <form id="form-2" 
+          action="https://api.web3forms.com/submit" 
+          method="POST"
+          class="hidden space-y-4" 
+          onsubmit="handleFormSubmit(event, 'Nuevo Creyente')">
 
-                <div id="success-message" class="hidden text-center py-10">
-                    <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="check-circle" class="w-12 h-12"></i>
-                    </div>
-                    <h4 class="text-3xl font-black text-slate-900 mb-4 uppercase italic">¡BIENVENIDO A COLOMBIA TIERRA BENDITA!</h4>
-                    <p id="message-text" class="text-lg text-slate-600 font-medium mb-6"></p>
-                    
-                    <div class="bg-green-50 p-6 rounded-2xl border-2 border-green-200 mb-8">
-                        <p class="text-green-800 font-bold mb-4">¡Ahora únete al grupo de WhatsApp para mantenerte informado y actualizado!</p>
-                        <a href="https://chat.whatsapp.com/KYirebMdmpq7ghevWRzTVb" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-green-500 text-white rounded-xl font-black uppercase tracking-widest hover:bg-green-600 transition-all shadow-lg">
-                            <i data-lucide="message-circle"></i> UNIRME AL WHATSAPP
-                        </a>
-                    </div>
+        <input type="hidden" name="access_key" value="683d7f43-01cf-4e33-948a-6303c1b1769a">
+        <input type="hidden" name="from_name" value="Registro: Nuevo Creyente">
+        <input type="hidden" name="subject" value="Nuevo Registro de Creyente - Misión TRES">
 
-                    <button onclick="location.reload()" class="text-brandBlue font-bold underline hover:text-brandRed transition-colors">Realizar otro registro</button>
-                </div>
-            </div>
+        <h3 class="text-2xl font-black text-brandRed mb-6 uppercase border-b-4 border-brandYellow inline-block">Formulario para Nuevo Creyente</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="text" name="nombres" placeholder="Nombres completos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
+            <input type="text" name="apellidos" placeholder="Apellidos completos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
+            <input type="text" name="identificacion" placeholder="Número de identificación" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
+            <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
+            <input type="email" name="email" placeholder="Correo electrónico" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
+            <input type="text" name="nombre_pastor" placeholder="Nombre del pastor" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
+            <input type="text" name="departamento" placeholder="Departamento" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
+            <input type="text" name="ciudad" placeholder="Ciudad" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
+        </div>
+        <button type="submit" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all shadow-lg mt-6 uppercase">Enviar mi Registro</button>
+    </form>
+
+    <div id="success-message" class="hidden text-center py-10">
+        <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i data-lucide="check-circle" class="w-12 h-12"></i>
+        </div>
+        <h4 class="text-3xl font-black text-slate-900 mb-4 uppercase italic">¡BIENVENIDO A COLOMBIA TIERRA BENDITA!</h4>
+        <p id="message-text" class="text-lg text-slate-600 font-medium mb-6"></p>
+        
+        <div class="bg-green-50 p-6 rounded-2xl border-2 border-green-200 mb-8">
+            <p class="text-green-800 font-bold mb-4">¡Ahora únete al grupo de WhatsApp para mantenerte informado y actualizado!</p>
+            <a href="https://chat.whatsapp.com/KYirebMdmpq7ghevWRzTVb" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-green-500 text-white rounded-xl font-black uppercase tracking-widest hover:bg-green-600 transition-all shadow-lg">
+                <i data-lucide="message-circle"></i> UNIRME AL WHATSAPP
+            </a>
         </div>
 
-        <div class="mt-20 bg-brandBlue p-8 lg:p-12 rounded-[48px] shadow-2xl border-8 border-brandYellow flex flex-col md:flex-row items-center gap-8 justify-between">
-            <div class="text-left">
-                <p class="text-sm font-bold text-brandYellow uppercase mb-2">Canales Directos</p>
-                <h4 class="text-2xl font-bold text-white mb-4">Contáctenos hoy mismo</h4>
-                <div class="space-y-2 text-blue-100 font-bold">
-                    <p class="flex items-center gap-3"><i data-lucide="phone" class="w-5 h-5 text-brandYellow"></i> +57 322 772 13 23</p>
-                    <p class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5 text-brandYellow"></i> info@fundacionmisiontres.com</p>
-                </div>
-            </div>
-        </div>
+        <button onclick="location.reload()" class="text-brandBlue font-bold underline hover:text-brandRed transition-colors">Realizar otro registro</button>
     </div>
-</section>
+</div>
 
 <script>
 async function handleFormSubmit(event, tipoRegistro) {
@@ -880,7 +877,6 @@ async function handleFormSubmit(event, tipoRegistro) {
     const button = form.querySelector('button[type="submit"]');
     const originalText = button.innerText;
 
-    // Estado de carga
     button.disabled = true;
     button.innerText = "ENVIANDO...";
 
@@ -893,8 +889,9 @@ async function handleFormSubmit(event, tipoRegistro) {
             }
         });
 
-        if (response.ok) {
-            // Ocultar formularios y mostrar éxito
+        const result = await response.json();
+
+        if (response.status === 200) {
             document.getElementById('form-1').classList.add('hidden');
             document.getElementById('form-2').classList.add('hidden');
             
@@ -904,13 +901,13 @@ async function handleFormSubmit(event, tipoRegistro) {
             successMessage.classList.remove('hidden');
             messageText.innerText = `Gracias por registrarte como ${tipoRegistro}. Hemos recibido tu información correctamente.`;
             
-            // Scroll suave hacia el mensaje de éxito
             successMessage.scrollIntoView({ behavior: 'smooth' });
         } else {
-            throw new Error('Error en la respuesta del servidor');
+            console.log(result);
+            throw new Error('Error en el servidor');
         }
     } catch (error) {
-        alert("Hubo un problema al enviar el formulario. Por favor, inténtalo de nuevo.");
+        alert("Hubo un problema al enviar el formulario. Por favor, verifica que tu conexión a internet sea estable e inténtalo de nuevo.");
         button.disabled = false;
         button.innerText = originalText;
     }
