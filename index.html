@@ -856,17 +856,23 @@
 </div>
 
 <script>
-// Script para manejar la visibilidad y el éxito del formulario
+// Lógica para detectar el envío exitoso mediante el hash #exito
 window.onload = function() {
     if(window.location.hash === '#exito') {
-        document.getElementById('form-container').classList.remove('hidden');
-        document.getElementById('success-message').classList.remove('hidden');
+        const container = document.getElementById('form-container');
+        const success = document.getElementById('success-message');
         const selector = document.getElementById('selector-perfil-container');
+        
+        container.classList.remove('hidden');
+        success.classList.remove('hidden');
+        
         if(selector) selector.style.display = 'none';
-        document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+        
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 }
 
+// Función para mostrar el formulario correspondiente
 function showForm(num) {
     const container = document.getElementById('form-container');
     const f1 = document.getElementById('form-1');
