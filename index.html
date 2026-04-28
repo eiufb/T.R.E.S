@@ -782,7 +782,7 @@
                 </div>
             </div>
 
-            <div id="form-container" class="max-w-3xl mx-auto bg-slate-50 p-8 lg:p-12 rounded-[3rem] shadow-2xl hidden" data-aos="zoom-in">
+           <div id="form-container" class="max-w-3xl mx-auto bg-slate-50 p-8 lg:p-12 rounded-[3rem] shadow-2xl hidden" data-aos="zoom-in">
                 
     <form id="form-1" action="https://formsubmit.co/info@fundacionmisiontres.com" method="POST" class="hidden">
         <input type="hidden" name="_subject" value="Nuevo Registro de Pastor/Ministro - Misión TRES">
@@ -835,7 +835,7 @@
             <input type="text" name="departamento" placeholder="Departamento" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
             <input type="text" name="ciudad" placeholder="Ciudad" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
         </div>
-        <button type="submit" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all shadow-lg mt-6 uppercase">Enviar </button>
+        <button type="submit" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all shadow-lg mt-6 uppercase">Enviar</button>
     </form>
 
     <div id="success-message" class="hidden text-center py-10">
@@ -843,7 +843,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
         </div>
         <h4 class="text-3xl font-black text-slate-900 mb-4 uppercase italic">¡BIENVENIDO A COLOMBIA TIERRA BENDITA!</h4>
-        <p id="message-text" class="text-lg text-slate-600 font-medium mb-6">Tu registro ha sido procesado exitosamente.</p>
+        <p class="text-lg text-slate-600 font-medium mb-6">Tu registro ha sido procesado exitosamente.</p>
         
         <div class="bg-green-50 p-6 rounded-2xl border-2 border-green-200 mb-8">
             <p class="text-green-800 font-bold mb-4">¡Ahora únete al grupo de WhatsApp para mantenerte informado!</p>
@@ -856,23 +856,29 @@
 </div>
 
 <script>
-// Lógica para detectar el envío exitoso mediante el hash #exito
-window.onload = function() {
+function checkHash() {
     if(window.location.hash === '#exito') {
-        const container = document.getElementById('form-container');
-        const success = document.getElementById('success-message');
+        // Mostramos el contenedor y el mensaje de éxito
+        document.getElementById('form-container').classList.remove('hidden');
+        document.getElementById('success-message').classList.remove('hidden');
+        
+        // Ocultamos los formularios de entrada
+        document.getElementById('form-1').style.display = 'none';
+        document.getElementById('form-2').style.display = 'none';
+        
+        // Ocultamos el selector de perfiles si existe
         const selector = document.getElementById('selector-perfil-container');
-        
-        container.classList.remove('hidden');
-        success.classList.remove('hidden');
-        
         if(selector) selector.style.display = 'none';
         
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Scroll suave al mensaje
+        document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
     }
 }
 
-// Función para mostrar el formulario correspondiente
+// Ejecutar al cargar y si el hash cambia
+window.addEventListener('load', checkHash);
+window.addEventListener('hashchange', checkHash);
+
 function showForm(num) {
     const container = document.getElementById('form-container');
     const f1 = document.getElementById('form-1');
