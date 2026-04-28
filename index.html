@@ -781,61 +781,71 @@
 
             <div id="form-container" class="max-w-3xl mx-auto bg-slate-50 p-8 lg:p-12 rounded-[3rem] shadow-2xl hidden">
                 
-                <form id="form-1" action="https://formsubmit.co/info@fundacionmisiontres.com" method="POST" class="hidden space-y-4" onsubmit="handleFormSubmit(event, 'Pastor o Ministro')">
-                    <input type="hidden" name="_subject" value="Nuevo Registro de Pastor/Ministro - Misión TRES">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="text" name="_gotcha" style="display:none">
-                    <h3 class="text-2xl font-black text-brandBlue mb-6 uppercase border-b-4 border-brandYellow inline-block">Registro para Pastor</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" name="nombres" placeholder="Nombres" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
-                        <input type="text" name="apellidos" placeholder="Apellidos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
-                        <input type="text" name="identificacion" placeholder="Cédula" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
-                        <input type="tel" name="whatsapp" placeholder="WhatsApp" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
-                        <input type="email" name="email" placeholder="Email" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
-                        <input type="text" name="congregacion" placeholder="Congregación" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
-                    </div>
-                    <textarea name="compromiso" placeholder="Tu compromiso..." class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none h-32" required></textarea>
-                    <button type="submit" class="w-full py-5 bg-brandBlue text-white font-black rounded-2xl hover:bg-brandRed transition-all uppercase">Enviar Registro</button>
-                </form>
-
-                <form id="form-2" action="https://formsubmit.co/info@fundacionmisiontres.com" method="POST" class="hidden space-y-4" onsubmit="handleFormSubmit(event, 'Nuevo Creyente')">
-                    <input type="hidden" name="_subject" value="Nuevo Registro de Creyente - Misión TRES">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="text" name="_gotcha" style="display:none">
-                    <h3 class="text-2xl font-black text-brandRed mb-6 uppercase border-b-4 border-brandYellow inline-block">Registro para Creyente</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" name="nombres" placeholder="Nombres" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none" required>
-                        <input type="text" name="apellidos" placeholder="Apellidos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none" required>
-                        <input type="tel" name="whatsapp" placeholder="WhatsApp" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none" required>
-                        <input type="email" name="email" placeholder="Email" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none" required>
-                    </div>
-                    <button type="submit" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all uppercase">Enviar mi Registro</button>
-                </form>
-
-                <div id="success-message" class="hidden text-center py-10">
-                    <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <h4 class="text-2xl font-black text-slate-900 mb-2 uppercase">¡REGISTRO EXITOSO!</h4>
-                    <p id="message-text" class="text-slate-600 font-medium mb-8"></p>
-                    <div class="bg-green-50 p-6 rounded-2xl border-2 border-green-100 mb-6">
-                        <p class="text-green-800 font-bold mb-4">Únete al canal oficial para recibir noticias:</p>
-                        <a href="https://chat.whatsapp.com/KYirebMdmpq7ghevWRzTVb" target="_blank" class="inline-block px-8 py-4 bg-green-500 text-white rounded-xl font-black hover:bg-green-600 transition-all">
-                            UNIRME AL WHATSAPP
-                        </a>
-                    </div>
-                    <button onclick="location.reload()" class="text-brandBlue font-bold underline">Hacer otro registro</button>
-                </div>
-
-            </div>
-        </div>
+                <form id="form-1" 
+      action="https://formsubmit.co/info@fundacionmisiontres.com" 
+      method="POST" 
+      target="_blank"
+      class="hidden space-y-4">
+    
+    <input type="hidden" name="_subject" value="Nuevo Registro de Pastor/Ministro - Misión TRES">
+    <input type="hidden" name="_captcha" value="false">
+    
+    <h3 class="text-2xl font-black text-brandBlue mb-6 uppercase border-b-4 border-brandYellow inline-block">Registro para Pastor</h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" name="name" placeholder="Nombres" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
+        <input type="text" name="apellidos" placeholder="Apellidos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
+        <input type="text" name="identificacion" placeholder="Cédula" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
+        <input type="tel" name="whatsapp" placeholder="WhatsApp" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
+        <input type="email" name="email" placeholder="Email" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
+        <input type="text" name="congregacion" placeholder="Congregación" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none" required>
     </div>
-</section>
+    
+    <textarea name="message" placeholder="Tu compromiso..." class="w-full p-4 rounded-xl border-2 border-white focus:border-brandBlue outline-none h-32" required></textarea>
+    
+    <button type="submit" onclick="handleLegacySubmit('Pastor')" class="w-full py-5 bg-brandBlue text-white font-black rounded-2xl hover:bg-brandRed transition-all uppercase">Enviar Registro</button>
+</form>
+
+<form id="form-2" 
+      action="https://formsubmit.co/info@fundacionmisiontres.com" 
+      method="POST" 
+      target="_blank"
+      class="hidden space-y-4">
+
+    <input type="hidden" name="_subject" value="Nuevo Registro de Creyente - Misión TRES">
+    <input type="hidden" name="_captcha" value="false">
+
+    <h3 class="text-2xl font-black text-brandRed mb-6 uppercase border-b-4 border-brandYellow inline-block">Registro para Creyente</h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" name="name" placeholder="Nombres" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none" required>
+        <input type="text" name="apellidos" placeholder="Apellidos" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none" required>
+        <input type="tel" name="whatsapp" placeholder="WhatsApp" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none" required>
+        <input type="email" name="email" placeholder="Email" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none" required>
+    </div>
+    <button type="submit" onclick="handleLegacySubmit('Nuevo Creyente')" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all uppercase">Enviar mi Registro</button>
+</form>
 
 <script>
+// Nueva lógica: Muestra el éxito localmente mientras FormSubmit abre la pestaña de envío
+function handleLegacySubmit(tipo) {
+    // Esperamos un momento para que el navegador inicie el envío antes de ocultar el formulario
+    setTimeout(() => {
+        document.getElementById('form-1').classList.add('hidden');
+        document.getElementById('form-2').classList.add('hidden');
+        document.getElementById('selector-perfil').classList.add('hidden');
+        
+        const success = document.getElementById('success-message');
+        document.getElementById('message-text').innerText = `Gracias por registrarte como ${tipo}. Tu información está siendo procesada.`;
+        success.classList.remove('hidden');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 500);
+}
+
 function showForm(num) {
     document.getElementById('form-container').classList.remove('hidden');
     document.getElementById('success-message').classList.add('hidden');
+    document.getElementById('selector-perfil').classList.remove('hidden');
     
     const f1 = document.getElementById('form-1');
     const f2 = document.getElementById('form-2');
@@ -847,50 +857,8 @@ function showForm(num) {
         f2.classList.remove('hidden');
         f1.classList.add('hidden');
     }
-    document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
-}
-
-async function handleFormSubmit(event, tipo) {
-    event.preventDefault();
-    const form = event.target;
-    const btn = form.querySelector('button[type="submit"]');
-    const originalText = btn.innerText;
-
-    btn.disabled = true;
-    btn.innerText = "ENVIANDO...";
-
-    try {
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-            // Ocultar selectores y formularios
-            document.getElementById('form-1').classList.add('hidden');
-            document.getElementById('form-2').classList.add('hidden');
-            document.getElementById('selector-perfil').classList.add('hidden');
-            
-            // Mostrar mensaje de éxito
-            const success = document.getElementById('success-message');
-            document.getElementById('message-text').innerText = `Gracias por registrarte como ${tipo}. Tu información ha sido enviada con éxito a la Fundación Misión TRES.`;
-            success.classList.remove('hidden');
-            
-            // Scroll suave hacia el mensaje de éxito
-            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-            throw new Error('Error de red');
-        }
-    } catch (err) {
-        alert("Error al enviar. Intenta de nuevo.");
-        btn.disabled = false;
-        btn.innerText = originalText;
-    }
 }
 </script>
-    
-    
     
     
     <!-- FOOTER -->
