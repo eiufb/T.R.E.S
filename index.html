@@ -781,8 +781,7 @@
                     </button>
                 </div>
             </div>
-
-           <div id="form-container" class="max-w-3xl mx-auto bg-slate-50 p-8 lg:p-12 rounded-[3rem] shadow-2xl hidden" data-aos="zoom-in">
+<div id="form-container" class="max-w-3xl mx-auto bg-slate-50 p-8 lg:p-12 rounded-[3rem] shadow-2xl hidden" data-aos="zoom-in">
                 
     <form id="form-1" action="https://formsubmit.co/info@fundacionmisiontres.com" method="POST" class="hidden">
         <input type="hidden" name="_subject" value="Nuevo Registro de Pastor/Ministro - Misión TRES">
@@ -814,7 +813,7 @@
             </p>
         </div>
 
-        <button type="submit" class="w-full py-5 bg-brandBlue text-white font-black rounded-2xl hover:bg-brandRed transition-all shadow-lg mt-6 uppercase">Enviar </button>
+        <button type="submit" class="w-full py-5 bg-brandBlue text-white font-black rounded-2xl hover:bg-brandRed transition-all shadow-lg mt-6 uppercase">Enviar</button>
     </form>
 
     <form id="form-2" action="https://formsubmit.co/info@fundacionmisiontres.com" method="POST" class="hidden">
@@ -835,7 +834,7 @@
             <input type="text" name="departamento" placeholder="Departamento" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
             <input type="text" name="ciudad" placeholder="Ciudad" class="w-full p-4 rounded-xl border-2 border-white focus:border-brandRed outline-none shadow-sm" required>
         </div>
-        <button type="submit" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all shadow-lg mt-6 uppercase">Enviar</button>
+        <button type="submit" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all shadow-lg mt-6 uppercase">Enviar </button>
     </form>
 
     <div id="success-message" class="hidden text-center py-10">
@@ -856,28 +855,37 @@
 </div>
 
 <script>
-function checkHash() {
+// Función maestra para verificar el estado del envío
+function verificarExito() {
     if(window.location.hash === '#exito') {
-        // Mostramos el contenedor y el mensaje de éxito
-        document.getElementById('form-container').classList.remove('hidden');
-        document.getElementById('success-message').classList.remove('hidden');
-        
-        // Ocultamos los formularios de entrada
-        document.getElementById('form-1').style.display = 'none';
-        document.getElementById('form-2').style.display = 'none';
-        
-        // Ocultamos el selector de perfiles si existe
+        const container = document.getElementById('form-container');
+        const success = document.getElementById('success-message');
+        const f1 = document.getElementById('form-1');
+        const f2 = document.getElementById('form-2');
         const selector = document.getElementById('selector-perfil-container');
-        if(selector) selector.style.display = 'none';
+
+        // Mostrar contenedor y éxito
+        container.classList.remove('hidden');
+        success.classList.remove('hidden');
         
-        // Scroll suave al mensaje
-        document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+        // Ocultar formularios y selector de perfiles
+        f1.style.display = 'none';
+        f1.classList.add('hidden');
+        f2.style.display = 'none';
+        f2.classList.add('hidden');
+        
+        if(selector) selector.style.display = 'none';
+
+        // Scroll automático
+        setTimeout(() => {
+            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 500);
     }
 }
 
-// Ejecutar al cargar y si el hash cambia
-window.addEventListener('load', checkHash);
-window.addEventListener('hashchange', checkHash);
+// Escuchar carga y cambios de URL
+window.addEventListener('load', verificarExito);
+window.addEventListener('hashchange', verificarExito);
 
 function showForm(num) {
     const container = document.getElementById('form-container');
@@ -898,7 +906,10 @@ function showForm(num) {
     container.scrollIntoView({ behavior: 'smooth' });
 }
 </script>
-    
+
+
+
+            
     <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
