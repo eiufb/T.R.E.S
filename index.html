@@ -751,6 +751,11 @@
 <section id="registro-programas" class="py-24 bg-white">
     <div class="container mx-auto px-6">
         
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-black text-brandBlue italic uppercase mb-4">Colombia Tierra Bendita</h2>
+            <div class="w-24 h-2 bg-brandYellow mx-auto mb-8"></div>
+        </div>
+
         <div id="selector-perfil-container" class="max-w-7xl mx-auto px-4 text-center">
             <p class="text-slate-500 font-bold uppercase mb-6 tracking-widest">Selecciona tu perfil para iniciar el registro</p>
             <div id="selector-perfil-botones" class="flex flex-wrap justify-center gap-6 mb-16">
@@ -771,29 +776,29 @@
                   class="hidden space-y-4">
                 
                 <input type="hidden" name="_subject" value="Nuevo Registro de Pastor/Ministro - Misión TRES">
-                <input type="hidden" name="_next" value="https://fundacionmisiontres.com/index.html#exito">
+                <input type="hidden" name="_next" value="https://fundacionmisiontres.com/#exito">
                 <input type="hidden" name="_template" value="table">
 
                 <h3 class="text-2xl font-black text-brandBlue mb-6 uppercase border-b-4 border-brandYellow inline-block">FORMULARIO PARA PASTOR O MINISTRO</h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" name="Nombre" placeholder="Nombres completos" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
-                    <input type="text" name="Apellido" placeholder="Apellidos completos" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
-                    <input type="text" name="Identificacion" placeholder="Número de identificación" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
-                    <input type="tel" name="WhatsApp" placeholder="WhatsApp" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
+                    <input type="text" name="Nombres" placeholder="Nombres completos" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
+                    <input type="text" name="Apellidos" placeholder="Apellidos completos" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
+                    <input type="text" name="ID_Cedula" placeholder="Número de identificación" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
+                    <input type="tel" name="WhatsApp" placeholder="Número de WhatsApp" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
                     <input type="email" name="email" placeholder="Correo electrónico" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
                     <input type="text" name="Congregacion" placeholder="Nombre de congregación" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
                     <input type="text" name="Departamento" placeholder="Departamento" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
                     <input type="text" name="Ciudad" placeholder="Ciudad" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
                 </div>
                 
-                <textarea name="Compromiso" placeholder="Compromiso de nuevas almas..." class="w-full p-4 rounded-xl border-2 border-white outline-none h-32" required></textarea>
+                <textarea name="Compromiso" placeholder="Compromiso de nuevas almas en los próximos 1.000 días" class="w-full p-4 rounded-xl border-2 border-white outline-none h-32" required></textarea>
                 
                 <div class="p-4 bg-red-50 rounded-xl border-l-4 border-brandRed text-sm text-slate-700">
-                    No olvide enviar por WhatsApp al 322 772 13 23 su fotocopia de cédula y RUT.
+                    Para terminar con éxito su registro no olvide enviar por WhatsApp al 322 772 13 23 su fotocopia de cédula y copia de su RUT.
                 </div>
 
-                <button type="submit" class="w-full py-5 bg-brandBlue text-white font-black rounded-2xl hover:bg-brandRed transition-all uppercase">ENVIAR REGISTRO MINISTERIAL</button>
+                <button type="submit" class="w-full py-5 bg-brandBlue text-white font-black rounded-2xl hover:bg-brandRed transition-all uppercase shadow-lg">ENVIAR REGISTRO MINISTERIAL</button>
             </form>
 
             <form id="form-2" 
@@ -801,8 +806,8 @@
                   method="POST" 
                   class="hidden space-y-4">
 
-                <input type="hidden" name="_next" value="https://fundacionmisiontres.com/index.html#exito">
                 <input type="hidden" name="_subject" value="Nuevo Registro de Creyente - Misión TRES">
+                <input type="hidden" name="_next" value="https://fundacionmisiontres.com/#exito">
 
                 <h3 class="text-2xl font-black text-brandRed mb-6 uppercase border-b-4 border-brandYellow inline-block">Registro para Nuevo Creyente</h3>
                 
@@ -812,7 +817,7 @@
                     <input type="tel" name="WhatsApp" placeholder="WhatsApp" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
                     <input type="email" name="email" placeholder="Email" class="w-full p-4 rounded-xl border-2 border-white outline-none" required>
                 </div>
-                <button type="submit" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all uppercase">Enviar mi Registro</button>
+                <button type="submit" class="w-full py-5 bg-brandRed text-white font-black rounded-2xl hover:bg-slate-900 transition-all uppercase shadow-lg">Enviar mi Registro</button>
             </form>
 
             <div id="exito" class="hidden text-center py-10">
@@ -820,13 +825,14 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
                 <h4 class="text-2xl font-black text-slate-900 mb-2 uppercase italic">¡BIENVENIDO A COLOMBIA TIERRA BENDITA!</h4>
-                <p class="text-slate-600 font-medium mb-8">Se ha enviado correctamente tu registro.</p>
+                <p class="text-slate-600 font-medium mb-8">Se ha enviado correctamente y te has suscrito al Programa.</p>
                 <div class="bg-green-50 p-6 rounded-2xl border-2 border-green-200 mb-8">
-                    <a href="https://chat.whatsapp.com/KYirebMdmpq7ghevWRzTVb" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-green-500 text-white rounded-xl font-black uppercase hover:bg-green-600 transition-all shadow-lg">
+                    <p class="text-green-800 font-bold mb-4 italic">¡Ahora únete al grupo de WhatsApp oficial!</p>
+                    <a href="https://chat.whatsapp.com/KYirebMdmp7ghevWRzTVb" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-green-500 text-white rounded-xl font-black uppercase hover:bg-green-600 transition-all shadow-lg">
                         UNIRME AL WHATSAPP
                     </a>
                 </div>
-                <button onclick="location.reload()" class="text-brandBlue font-bold underline">Volver al inicio</button>
+                <button onclick="window.location.href='https://fundacionmisiontres.com'" class="text-brandBlue font-bold underline">Realizar otro registro</button>
             </div>
         </div>
     </div>
@@ -835,26 +841,43 @@
 <script>
 window.onload = function() {
     if(window.location.hash === '#exito') {
-        document.getElementById('form-container').classList.remove('hidden');
-        document.getElementById('exito').classList.remove('hidden');
+        const container = document.getElementById('form-container');
+        const exito = document.getElementById('exito');
+        const selector = document.getElementById('selector-perfil-container');
+        
+        container.classList.remove('hidden');
+        exito.classList.remove('hidden');
+        selector.style.display = 'none';
+        
         document.getElementById('form-1').style.display = 'none';
         document.getElementById('form-2').style.display = 'none';
-        document.getElementById('selector-perfil-container').style.display = 'none';
+        exito.scrollIntoView({ behavior: 'smooth' });
     }
 }
 
 function showForm(num) {
-    document.getElementById('form-container').classList.remove('hidden');
-    document.getElementById('exito').classList.add('hidden');
+    const container = document.getElementById('form-container');
     const f1 = document.getElementById('form-1');
     const f2 = document.getElementById('form-2');
-    if (num === 1) { f1.style.display = 'block'; f2.style.display = 'none'; } 
-    else { f2.style.display = 'block'; f1.style.display = 'none'; }
-    document.getElementById('form-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const exito = document.getElementById('exito');
+
+    container.classList.remove('hidden');
+    exito.classList.add('hidden');
+
+    if (num === 1) {
+        f1.style.display = 'block';
+        f1.classList.remove('hidden');
+        f2.style.display = 'none';
+        f2.classList.add('hidden');
+    } else {
+        f2.style.display = 'block';
+        f2.classList.remove('hidden');
+        f1.style.display = 'none';
+        f1.classList.add('hidden');
+    }
+    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-</script>
-    
-    
+</script>    
     
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
