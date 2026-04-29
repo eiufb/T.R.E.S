@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Exitoso - Misión TRES</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlue: '#0047AB', // Ajusta a tu azul exacto
+                        brandRed: '#E11D48',
+                        brandYellow: '#FBBF24',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="max-w-xl w-full bg-white p-8 lg:p-12 rounded-[3rem] shadow-2xl text-center">
+        
+        <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+        </div>
+
+        <h4 id="titulo-exito" class="text-3xl font-black text-slate-900 mb-4 uppercase italic">
+            ¡BIENVENIDO A COLOMBIA TIERRA BENDITA!
+        </h4>
+        
+        <p id="mensaje-exito" class="text-lg text-slate-600 font-medium mb-6">
+            Tu registro ha sido procesado exitosamente.
+        </p>
+        
+        <div class="bg-green-50 p-6 rounded-2xl border-2 border-green-200 mb-8">
+            <p class="text-green-800 font-bold mb-4">¡Ahora únete al grupo de WhatsApp para mantenerte informado!</p>
+            <a href="https://chat.whatsapp.com/KYirebMdmpq7ghevWRzTVb" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-green-500 text-white rounded-xl font-black uppercase tracking-widest hover:bg-green-600 transition-all shadow-lg">
+                UNIRME AL WHATSAPP
+            </a>
+        </div>
+
+        <a href="https://fundacionmisiontres.com" class="block w-full py-4 bg-brandBlue text-white font-black rounded-2xl hover:bg-slate-900 transition-all shadow-lg uppercase text-center">
+            Volver a la Página Principal
+        </a>
+        
+        <button onclick="window.history.back()" class="mt-4 text-slate-400 hover:text-brandRed text-sm font-bold underline transition-colors">
+            Realizar otro registro
+        </button>
+    </div>
+
+    <script>
+        // Personalizamos el mensaje según el tipo que enviamos en la URL
+        const params = new URLSearchParams(window.location.search);
+        const tipo = params.get('tipo');
+        const titulo = document.getElementById('titulo-exito');
+        const mensaje = document.getElementById('mensaje-exito');
+
+        if (tipo === 'pastor') {
+            titulo.innerHTML = "¡REGISTRO DE <span class='text-brandBlue'>PASTOR</span> EXITOSO!";
+            mensaje.innerText = "Los datos del ministerio han sido recibidos. No olvide enviar sus documentos por WhatsApp.";
+        } else if (tipo === 'creyente') {
+            titulo.innerHTML = "¡REGISTRO DE <span class='text-brandRed'>CREYENTE</span> EXITOSO!";
+            mensaje.innerText = "Gracias por sumarte a esta misión. Tus datos ya están en nuestra base.";
+        }
+    </script>
+</body>
+</html>
