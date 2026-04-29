@@ -68,6 +68,20 @@
             titulo.innerHTML = "¡REGISTRO DE <span class='text-brandRed'>CREYENTE</span> EXITOSO!";
             mensaje.innerText = "Gracias por sumarte a esta misión. Tus datos ya están en nuestra base.";
         }
+
+// Dentro del script de exito.html, agregamos este 'else if'
+if (tipo === 'pastor') {
+    titulo.innerHTML = "¡REGISTRO DE <span class='text-brandBlue'>PASTOR</span> EXITOSO!";
+    mensaje.innerText = "Los datos del ministerio han sido recibidos.";
+} else if (tipo === 'creyente') {
+    titulo.innerHTML = "¡REGISTRO DE <span class='text-brandRed'>CREYENTE</span> EXITOSO!";
+    mensaje.innerText = "Gracias por sumarte a esta misión.";
+} else if (tipo === 'colaboracion') {
+    // ESTA ES LA NUEVA CATEGORÍA
+    titulo.innerHTML = "¡GRACIAS POR TU <span class='text-blue-600'>COLABORACIÓN</span>!";
+    mensaje.innerText = "Hemos recibido tu propuesta de ayuda. Un coordinador de la Fundación se pondrá en contacto con vos muy pronto.";
+}
+        
     </script>
 </body>
 </html>
