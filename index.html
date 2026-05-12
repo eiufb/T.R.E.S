@@ -955,10 +955,21 @@ handleFormSubmit('form-1', 'Pastor');
 handleFormSubmit('form-2', 'Creyente');
 
 
-    // ... resto de tu código donde guardas los datos ...
-
-  // Cambia la última línea por esta:
-  return HtmlService.createHtmlOutput("<script>window.top.location.href='https://fundacionmisiontres.com/exito.html';</script>");
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = e.parameter;
+    
+    // Aquí se guardan los datos
+    sheet.appendRow([new Date(), data.nombre, data.telefono, data.email]); 
+    
+    // ESTA LÍNEA DEBE IR AL FINAL
+    return HtmlService.createHtmlOutput("<script>window.top.location.href='https://fundacionmisiontres.com/exito.html';</script>");
+    
+  } catch (error) {
+    // Si algo falla, que al menos te avise por qué
+    return ContentService.createTextOutput("Error: " + error.message);
+  }
 }
 
 </script>
