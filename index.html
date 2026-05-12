@@ -857,7 +857,40 @@
     </div>
 </div>
 
-<script>
+<script>   const handleFormSubmit = (formId, tipo) => {
+    const form = document.getElementById(formId);
+    
+    form.addEventListener('submit', e => {
+        e.preventDefault(); 
+        e.stopImmediatePropagation();
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        
+        // --- CAMBIOS SOLICITADOS ---
+        submitBtn.innerText = "ENVIANDO...";
+        submitBtn.style.backgroundColor = "red"; // Botón rojo
+        submitBtn.style.color = "yellow";        // Letras amarillas
+        // ---------------------------
+
+        submitBtn.disabled = true;
+
+        const formData = new FormData(form);
+        formData.append('tipo_registro', tipo);
+
+        fetch(scriptURL, { 
+            method: 'POST', 
+            body: formData,
+            mode: 'no-cors' 
+        })
+        .then(() => {
+            window.location.href = 'https://fundacionmisiontres.com/exito.html';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            window.location.href = 'https://fundacionmisiontres.com/exito.html';
+        });
+    });
+};
 function verificarEstado() {
     if(window.location.hash === '#exito') {
         const container = document.getElementById('form-container');
