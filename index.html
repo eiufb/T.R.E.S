@@ -923,7 +923,7 @@ const handleFormSubmit = (formId, tipo) => {
     const form = document.getElementById(formId);
     
     form.addEventListener('submit', e => {
-        e.preventDefault(); // Impede o envio imediato para processar o Excel primeiro
+        e.preventDefault(); // Impede o envio imediato
 
         // Feedback visual no botão
         const submitBtn = form.querySelector('button[type="submit"]');
@@ -932,20 +932,19 @@ const handleFormSubmit = (formId, tipo) => {
         submitBtn.disabled = true;
 
         const formData = new FormData(form);
-        // Adiciona o tipo (Pastor ou Creyente) para a coluna "tipo_registro" do Excel
         formData.append('tipo_registro', tipo);
 
-        // Enviar dados para o Google Sheets
+        // Enviar dados para o Google Sheets via AJAX (fetch)
         fetch(scriptURL, { method: 'POST', body: formData })
             .then(response => {
                 console.log('Dados guardados no Excel com sucesso!');
-                // Depois de guardar no Excel, envia para o FormSubmit (e-mail)
-                form.submit(); 
+                // REDIRECCIÓN MANUAL TRAS ÉXITO EN EL EXCEL
+                window.location.href = 'https://fundacionmisiontres.com/exito.html';
             })
             .catch(error => {
                 console.error('Erro ao guardar no Excel:', error.message);
-                // Mesmo que o Excel falhe, enviamos o formulário para não perder o registo
-                form.submit();
+                // Si falla el Excel, igual lo mandamos a éxito para no frustrar al usuario
+                window.location.href = 'https://fundacionmisiontres.com/exito.html';
             });
     });
 };
@@ -954,26 +953,20 @@ const handleFormSubmit = (formId, tipo) => {
 handleFormSubmit('form-1', 'Pastor');
 handleFormSubmit('form-2', 'Creyente');
 
-
+// Nota: El doPost de abajo es solo referencia, debe estar dentro de Google Apps Script, no aquí.
+/*
 function doPost(e) {
   try {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     var data = e.parameter;
-    
-    // Aquí se guardan los datos
     sheet.appendRow([new Date(), data.nombre, data.telefono, data.email]); 
-    
-    // ESTA LÍNEA DEBE IR AL FINAL
     return HtmlService.createHtmlOutput("<script>window.top.location.href='https://fundacionmisiontres.com/exito.html';</script>");
-    
   } catch (error) {
-    // Si algo falla, que al menos te avise por qué
     return ContentService.createTextOutput("Error: " + error.message);
   }
 }
-
-</script>
-            
+*/
+</script>            
     <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
