@@ -863,74 +863,51 @@
     </div>
 </div>
 <script>
-  const form = document.getElementById('form-pastor');
-  
-  form.addEventListener('submit', function(e) {
-    e.preventDefault(); // Evita que se abra la página negra con el mensaje JSON
-    
-    const submitBtn = document.getElementById('btn-submit');
-    const originalText = submitBtn.innerText;
-    const redirectUrl = form.querySelector('input[name="_next"]').value;
+// URL de tu Script de Google (Definida una sola vez)
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzmndYclJKkLvAlcjT9mSK2AfhtZ_SpzWCKSDg8syh38lCKRLfirhK_y2392-QpUYQxNw/exec';
 
-    // Cambiar estado del botón
-    submitBtn.disabled = true;
-    submitBtn.innerText = "ENVIANDO...";
-
-    // Enviar datos
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      mode: 'no-cors' // Importante para Google Scripts
-    })
-    .then(() => {
-      // Redirección forzada tras el envío exitoso
-      window.location.href = redirectUrl;
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Hubo un error al enviar. Por favor intente de nuevo.');
-      submitBtn.disabled = false;
-      submitBtn.innerText = originalText;
-    });
-  });
-</script>
-<script>  
-    
-    
-    const handleFormSubmit = (formId, tipo) => {
+// FUNCIÓN PRINCIPAL DE ENVÍO
+const handleFormSubmit = (formId, tipo) => {
     const form = document.getElementById(formId);
+    if (!form) return;
     
     form.addEventListener('submit', e => {
-        e.preventDefault(); 
+        e.preventDefault(); // BLOQUEO TOTAL de la pantalla negra JSON
         e.stopImmediatePropagation();
 
         const submitBtn = form.querySelector('button[type="submit"]');
         
-        // --- CAMBIOS SOLICITADOS ---
-        submitBtn.innerText = "ENVIANDO...";
-        submitBtn.style.backgroundColor = "red"; // Botón rojo
-        submitBtn.style.color = "yellow";        // Letras amarillas
-        // ---------------------------
+        // Obtener la URL de redirección desde el input oculto _next del formulario actual
+        const redirectUrl = form.querySelector('input[name="_next"]').value;
 
+        // Estilos solicitados durante el envío
+        submitBtn.innerText = "ENVIANDO...";
+        submitBtn.style.backgroundColor = "red"; 
+        submitBtn.style.color = "yellow";        
         submitBtn.disabled = true;
 
         const formData = new FormData(form);
         formData.append('tipo_registro', tipo);
 
+        // Envío por AJAX
         fetch(scriptURL, { 
             method: 'POST', 
             body: formData,
             mode: 'no-cors' 
         })
         .then(() => {
-            window.location.href = 'https://fundacionmisiontres.com/exito.html';
+            // REDIRECCIÓN DINÁMICA (pastor o creyente según corresponda)
+            window.location.href = redirectUrl;
         })
         .catch(error => {
             console.error('Error:', error);
-            window.location.href = 'https://fundacionmisiontres.com/exito.html';
+            // En caso de error, también redirigimos para evitar la pantalla negra
+            window.location.href = redirectUrl;
         });
     });
 };
+
+// FUNCIONES DE INTERFAZ (Sin cambios en su lógica)
 function verificarEstado() {
     if(window.location.hash === '#exito') {
         const container = document.getElementById('form-container');
@@ -953,9 +930,6 @@ function verificarEstado() {
     }
 }
 
-window.addEventListener('load', verificarEstado);
-window.addEventListener('hashchange', verificarEstado);
-
 function showForm(num) {
     const container = document.getElementById('form-container');
     const f1 = document.getElementById('form-1');
@@ -976,41 +950,11 @@ function showForm(num) {
     container.scrollIntoView({ behavior: 'smooth' });
 }
 
-// URL de tu Script de Google
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzmndYclJKkLvAlcjT9mSK2AfhtZ_SpzWCKSDg8syh38lCKRLfirhK_y2392-QpUYQxNw/exec';
+// INICIALIZACIÓN
+window.addEventListener('load', verificarEstado);
+window.addEventListener('hashchange', verificarEstado);
 
-const handleFormSubmit = (formId, tipo) => {
-    const form = document.getElementById(formId);
-    
-    form.addEventListener('submit', e => {
-        e.preventDefault(); // BLOQUEO TOTAL de la pantalla negra
-        e.stopImmediatePropagation();
-
-        const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.innerText = "ENVIANDO...";
-        submitBtn.disabled = true;
-
-        const formData = new FormData(form);
-        formData.append('tipo_registro', tipo);
-
-        // Envío por detrás (AJAX)
-        fetch(scriptURL, { 
-            method: 'POST', 
-            body: formData,
-            mode: 'no-cors' 
-        })
-        .then(() => {
-            // REDIRECCIÓN FORZADA A TU WEB
-            window.location.href = 'https://fundacionmisiontres.com/exito.html';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // Incluso si falla, lo mandamos a éxito para que no vea la pantalla negra
-            window.location.href = 'https://fundacionmisiontres.com/exito.html';
-        });
-    });
-};
-
+// Activar el manejo de los dos formularios
 handleFormSubmit('form-1', 'Pastor');
 handleFormSubmit('form-2', 'Creyente');
 </script>
