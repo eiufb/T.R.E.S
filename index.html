@@ -860,7 +860,6 @@
 
 <script>
 function verificarEstado() {
-    // Si la URL contiene #exito, forzamos la vista de éxito
     if(window.location.hash === '#exito') {
         const container = document.getElementById('form-container');
         const success = document.getElementById('success-message');
@@ -868,29 +867,20 @@ function verificarEstado() {
         const f2 = document.getElementById('form-2');
         const selector = document.getElementById('selector-perfil-container');
 
-        // 1. Mostrar contenedor principal
         container.classList.remove('hidden');
         container.style.display = 'block';
-
-        // 2. Mostrar mensaje de éxito con display block directo
         success.style.display = 'block';
         success.classList.remove('hidden');
-        
-        // 3. Asegurarnos de ocultar los formularios
         f1.style.display = 'none';
         f2.style.display = 'none';
-        
-        // 4. Ocultar el selector de botones de arriba (Pastor/Creyente)
         if(selector) selector.style.display = 'none';
 
-        // 5. Scroll suave
         setTimeout(() => {
             success.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 300);
     }
 }
 
-// Se ejecuta al cargar la página y al cambiar el hash
 window.addEventListener('load', verificarEstado);
 window.addEventListener('hashchange', verificarEstado);
 
@@ -914,56 +904,46 @@ function showForm(num) {
     container.scrollIntoView({ behavior: 'smooth' });
 }
 
-
-// 1. Definição da URL do teu Script
+// URL de tu Script de Google
 const scriptURL = 'https://script.google.com/macros/s/AKfycbzmndYclJKkLvAlcjT9mSK2AfhtZ_SpzWCKSDg8syh38lCKRLfirhK_y2392-QpUYQxNw/exec';
 
-// 2. Função para processar o envio dos formulários
 const handleFormSubmit = (formId, tipo) => {
     const form = document.getElementById(formId);
     
     form.addEventListener('submit', e => {
-        e.preventDefault(); // Impede o envio imediato
+        e.preventDefault(); // BLOQUEO TOTAL de la pantalla negra
+        e.stopImmediatePropagation();
 
-        // Feedback visual no botão
         const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerText;
-        submitBtn.innerText = "A PROCESSAR...";
+        submitBtn.innerText = "ENVIANDO...";
         submitBtn.disabled = true;
 
         const formData = new FormData(form);
         formData.append('tipo_registro', tipo);
 
-        // Enviar dados para o Google Sheets via AJAX (fetch)
-        fetch(scriptURL, { method: 'POST', body: formData })
-            .then(response => {
-                console.log('Dados guardados no Excel com sucesso!');
-                // REDIRECCIÓN MANUAL TRAS ÉXITO EN EL EXCEL
-                window.location.href = 'https://fundacionmisiontres.com/exito.html';
-            })
-            .catch(error => {
-                console.error('Erro ao guardar no Excel:', error.message);
-                // Si falla el Excel, igual lo mandamos a éxito para no frustrar al usuario
-                window.location.href = 'https://fundacionmisiontres.com/exito.html';
-            });
+        // Envío por detrás (AJAX)
+        fetch(scriptURL, { 
+            method: 'POST', 
+            body: formData,
+            mode: 'no-cors' 
+        })
+        .then(() => {
+            // REDIRECCIÓN FORZADA A TU WEB
+            window.location.href = 'https://fundacionmisiontres.com/exito.html';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Incluso si falla, lo mandamos a éxito para que no vea la pantalla negra
+            window.location.href = 'https://fundacionmisiontres.com/exito.html';
+        });
     });
 };
 
-// 3. Ativar a lógica para os dois formulários da página
 handleFormSubmit('form-1', 'Pastor');
 handleFormSubmit('form-2', 'Creyente');
-
-// Nota: El doPost de abajo es solo referencia, debe estar dentro de Google Apps Script, no aquí.
-/*
-function doPost(e) {
-  try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var data = e.parameter;
-    sheet.appendRow([new Date(), data.nombre, data.telefono, data.email]); 
-    return HtmlService.createHtmlOutput("<script>window.top.location.href='https://fundacionmisiontres.com/exito.html';</script>");
-  
-</script>            
-    <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
+</script>
+            
+            <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
             
