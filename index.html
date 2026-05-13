@@ -157,6 +157,45 @@
 
 
     </style>
+
+    
+    <style>
+    body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    
+    /* LÓGICA DE MENÚ MÓVIL */
+    #mobile-menu {
+        display: none; 
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        background-color: white;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    #mobile-menu.show-menu {
+        display: block !important;
+    }
+
+    /* ANIMACIÓN DEL PUNTO ROJO Y PARPADEO */
+    @keyframes custom-blink {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.8; transform: scale(1.02); background-color: #FFFF00; }
+    }
+    .animate-button-blink {
+        animation: custom-blink 1.5s infinite;
+    }
+
+    .btn-flotante-wp {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+</style>
+
+
 </head>
 <body class="text-slate-900">
 
@@ -164,64 +203,90 @@
     
 
     <!-- NAVEGACIÓN -->
-    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 shadow-md">
+    
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-[50000] bg-white shadow-md">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-4">
-            <div class="flex items-center">
-                <img src="https://imgur.com/1GVVE05.png" alt="Logo Misión TRES" class="h-12 w-auto object-contain">
-                <div class="ml-3 flex flex-col">
-                    <span class="text-slate-900 font-black text-lg leading-tight tracking-tight uppercase">Fundación</span>
-                    <span class="text-brandBlue font-black text-xl leading-tight uppercase">Misión T.R.E.S.</span>
-                </div>
+        <div class="flex items-center">
+            <img src="https://imgur.com/1GVVE05.png" alt="Logo Misión TRES" class="h-12 w-auto object-contain">
+            <div class="ml-3 flex flex-col">
+                <span class="text-slate-900 font-black text-lg leading-tight uppercase">Fundación</span>
+                <span class="text-brandBlue font-black text-xl leading-tight uppercase">Misión T.R.E.S.</span>
             </div>
         </div>
 
-        <div class="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-wider text-slate-600">
+        <div class="hidden lg:flex items-center gap-6 text-sm font-bold uppercase text-slate-600">
             <a href="#inicio" class="hover:text-brandBlue transition-colors">Inicio</a>
             <a href="#nosotros" class="hover:text-brandBlue transition-colors">Nosotros</a>
             <a href="#proyectos" class="hover:text-brandBlue transition-colors">Proyectos</a>
-            <a href="#transparencia" class="hover:text-brandBlue transition-colors">Transparencia</a>
-            <a href="#registro-programas" class="flex items-center gap-2 bg-brandYellow text-brandBlue px-5 py-3 rounded-full hover:bg-slate-900 hover:text-white transition-all shadow-md font-black italic border border-brandBlue/10">
+            
+            <a href="#registro-programas" class="animate-button-blink flex items-center gap-2 bg-brandYellow text-brandBlue px-4 py-2 rounded-full shadow-sm font-black italic border border-brandBlue/10">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandRed opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-brandRed"></span>
                 </span>
-                Colombia Tierra Bendita 
+                Colombia Tierra Bendita
             </a>
-            <a href="#contacto" class="bg-brandBlue text-white px-6 py-3 rounded-full hover:bg-brandRed transition-all shadow-lg shadow-brandBlue/20">Únete ahora</a>
+            
+            <a href="#contacto" class="bg-brandBlue text-white px-6 py-3 rounded-full hover:bg-brandRed transition-all">Únete ahora</a>
         </div>
 
-        <button id="mobile-menu-btn" class="lg:hidden flex items-center gap-2 text-slate-900 p-2 focus:outline-none group">
-            <span class="text-[10px] font-black uppercase tracking-widest text-slate-500 group-hover:text-brandBlue transition-colors">Menú</span>
-            <div class="bg-slate-50 p-2 rounded-xl group-hover:bg-brandBlue/10 transition-all">
-                <i data-lucide="menu" id="menu-icon" class="w-6 h-6 text-brandBlue"></i>
+        <button id="trigger-mobile" class="lg:hidden flex items-center gap-2 p-2 outline-none">
+            <span class="text-[10px] font-black uppercase text-slate-500">Menú</span>
+            <div class="bg-slate-50 p-2 rounded-xl">
+                <i data-lucide="menu" id="icon-toggle" class="w-6 h-6 text-brandBlue"></i>
             </div>
         </button>
     </div>
 
-    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 absolute w-full left-0 shadow-xl transition-all duration-300 ease-in-out">
-        <div class="flex flex-col p-6 gap-4 text-sm font-bold uppercase tracking-wider text-slate-600">
-            <a href="#inicio" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Inicio</a>
-            <a href="#nosotros" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Nosotros</a>
-            <a href="#proyectos" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Proyectos</a>
-            <a href="#transparencia" class="mobile-link hover:text-brandBlue py-2 border-b border-slate-50">Transparencia</a>
+    <div id="mobile-menu" class="lg:hidden">
+        <div class="flex flex-col p-6 gap-4 text-sm font-bold uppercase text-slate-600">
+            <a href="#inicio" class="m-link py-2 border-b border-slate-50">Inicio</a>
+            <a href="#nosotros" class="m-link py-2 border-b border-slate-50">Nosotros</a>
+            <a href="#proyectos" class="m-link py-2 border-b border-slate-50">Proyectos</a>
             
-            <a href="#registro-programas" class="animate-button-blink mobile-link flex items-center justify-center gap-3 bg-brandYellow text-brandBlue py-4 rounded-2xl shadow-md font-black italic border border-brandBlue/10 mt-2">
-    <span class="relative flex h-3 w-3">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandRed opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-3 w-3 bg-brandRed"></span>
-    </span>
-    Ingresa a Colombia Tierra Bendita
-</a>
+            <a href="#registro-programas" class="animate-button-blink m-link flex items-center justify-center gap-3 bg-brandYellow text-brandBlue py-4 rounded-2xl shadow-md font-black italic mt-2">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandRed opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brandRed"></span>
+                </span>
+                Colombia Tierra Bendita
+            </a>
 
-
-            <a href="#contacto" class="mobile-link bg-brandBlue text-white px-6 py-4 rounded-2xl text-center shadow-lg">Únete ahora</a>
+            <a href="#contacto" class="m-link bg-brandBlue text-white py-4 rounded-2xl text-center">Únete ahora</a>
         </div>
     </div>
 </nav>
 
-<section class="h-24 lg:h-32"></section> ```
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        lucide.createIcons();
 
+        const btn = document.getElementById('trigger-mobile');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('icon-toggle');
+
+        if (btn && menu) {
+            btn.onclick = function(e) {
+                e.preventDefault();
+                menu.classList.toggle('show-menu');
+                
+                const isOpen = menu.classList.contains('show-menu');
+                icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+                lucide.createIcons();
+            };
+        }
+
+        document.querySelectorAll('.m-link').forEach(link => {
+            link.onclick = () => {
+                menu.classList.remove('show-menu');
+                icon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            };
+        });
+    });
+</script>
+
+<section class="h-24 lg:h-32"></section>
     <!-- HERO SECTION CON CARRUSEL INTERACTIVO -->
     <section id="inicio" class="relative h-screen min-h-[600px] overflow-hidden">
         <div class="swiper hero-swiper">
