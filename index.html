@@ -940,15 +940,12 @@ const handleFormSubmit = (formId, tipo) => {
     if (!form) return;
     
     form.addEventListener('submit', e => {
-        e.preventDefault(); // BLOQUEO TOTAL de la pantalla negra JSON
+        e.preventDefault(); 
         e.stopImmediatePropagation();
 
         const submitBtn = form.querySelector('button[type="submit"]');
-        
-        // Obtener la URL de redirección desde el input oculto _next del formulario actual
         const redirectUrl = form.querySelector('input[name="_next"]').value;
 
-        // Estilos solicitados durante el envío
         submitBtn.innerText = "ENVIANDO...";
         submitBtn.style.backgroundColor = "red"; 
         submitBtn.style.color = "yellow";        
@@ -957,6 +954,13 @@ const handleFormSubmit = (formId, tipo) => {
         const formData = new FormData(form);
         formData.append('tipo_registro', tipo);
 
+        // --- BLOQUE DE PRUEBA: Ver datos en consola antes de enviar ---
+        console.log("--- Datos capturados para " + tipo + " ---");
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`); 
+        }
+        // -------------------------------------------------------------
+
         // Envío por AJAX
         fetch(scriptURL, { 
             method: 'POST', 
@@ -964,18 +968,17 @@ const handleFormSubmit = (formId, tipo) => {
             mode: 'no-cors' 
         })
         .then(() => {
-            // REDIRECCIÓN DINÁMICA (pastor o creyente según corresponda)
+            console.log("Envío procesado a Google Sheets");
             window.location.href = redirectUrl;
         })
         .catch(error => {
             console.error('Error:', error);
-            // En caso de error, también redirigimos para evitar la pantalla negra
             window.location.href = redirectUrl;
         });
     });
 };
 
-// FUNCIONES DE INTERFAZ (Sin cambios en su lógica)
+// FUNCIONES DE INTERFAZ (Sin cambios)
 function verificarEstado() {
     if(window.location.hash === '#exito') {
         const container = document.getElementById('form-container');
@@ -984,16 +987,20 @@ function verificarEstado() {
         const f2 = document.getElementById('form-2');
         const selector = document.getElementById('selector-perfil-container');
 
-        container.classList.remove('hidden');
-        container.style.display = 'block';
-        success.style.display = 'block';
-        success.classList.remove('hidden');
-        f1.style.display = 'none';
-        f2.style.display = 'none';
+        if(container) {
+            container.classList.remove('hidden');
+            container.style.display = 'block';
+        }
+        if(success) {
+            success.style.display = 'block';
+            success.classList.remove('hidden');
+        }
+        if(f1) f1.style.display = 'none';
+        if(f2) f2.style.display = 'none';
         if(selector) selector.style.display = 'none';
 
         setTimeout(() => {
-            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if(success) success.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 300);
     }
 }
@@ -1004,18 +1011,20 @@ function showForm(num) {
     const f2 = document.getElementById('form-2');
     const success = document.getElementById('success-message');
 
-    container.classList.remove('hidden');
-    container.style.display = 'block';
-    success.style.display = 'none';
+    if(container) {
+        container.classList.remove('hidden');
+        container.style.display = 'block';
+    }
+    if(success) success.style.display = 'none';
 
     if (num === 1) {
-        f1.style.display = 'block';
-        f2.style.display = 'none';
+        if(f1) f1.style.display = 'block';
+        if(f2) f2.style.display = 'none';
     } else {
-        f2.style.display = 'block';
-        f1.style.display = 'none';
+        if(f2) f2.style.display = 'block';
+        if(f1) f1.style.display = 'none';
     }
-    container.scrollIntoView({ behavior: 'smooth' });
+    if(container) container.scrollIntoView({ behavior: 'smooth' });
 }
 
 // INICIALIZACIÓN
