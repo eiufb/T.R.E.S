@@ -719,24 +719,21 @@
 </p>
             
 
-
 <section class="py-12 px-4 bg-gray-50">
   <div class="max-w-2xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100">
     
-
-      <form action="https://script.google.com/macros/s/AKfycbzmndYclJKkLvAlcjT9mSK2AfhtZ_SpzWCKSDg8syh38lCKRLfirhK_y2392-QpUYQxNw/exec" method="POST" class="p-8 space-y-6">
+    <!-- Eliminamos action/method para que el script de JS tome el control total -->
+    <form id="form-colaboracion" class="p-8 space-y-6">
       
       <input type="hidden" name="_subject" value="Nueva colaboración - Fundación Misión Tres">
-      
       <input type="hidden" name="_next" value="https://fundacionmisiontres.com/exito.html?tipo=colaboracion">
-      
       <input type="hidden" name="_captcha" value="false">
-      <input type="text" name="_gotcha" style="display:none">
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-2">Nombre y Apellido</label>
-          <input type="text" id="nombre" name="nombre" required placeholder="Juan Pérez"
+          <!-- CAMBIO: name="nombres" para que coincida con la columna B -->
+          <input type="text" id="nombre" name="nombres" required placeholder="Juan Pérez"
             class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all">
         </div>
         
@@ -749,24 +746,27 @@
 
       <div>
         <label for="telefono" class="block text-sm font-semibold text-gray-700 mb-2">WhatsApp / Teléfono</label>
-        <input type="tel" id="telefono" name="telefono" placeholder="+57..."
+        <!-- CAMBIO: name="whatsapp" para que coincida con la columna E -->
+        <input type="tel" id="telefono" name="whatsapp" placeholder="+57..."
           class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all">
       </div>
 
       <div>
         <label for="tipo_donacion" class="block text-sm font-semibold text-gray-700 mb-2">¿Cómo deseas colaborar?</label>
-        <select id="tipo_donacion" name="tipo_donacion" required
+        <!-- CAMBIO: name="tipo_registro" para la columna A y onchange para los placeholders -->
+        <select id="tipo_donacion" name="tipo_registro" required onchange="actualizarPlaceholder()"
           class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-600 outline-none transition-all cursor-pointer">
           <option value="" disabled selected>Selecciona una categoría</option>
-          <option value="Materiales">Materiales o Materia Prima</option>
-          <option value="Trabajo">Tiempo / Trabajo Profesional</option>
-          <option value="Dinero">Donación Económica</option>
+          <option value="Colab-Materiales">Materiales o Materia Prima</option>
+          <option value="Colab-Trabajo">Tiempo / Trabajo Profesional</option>
+          <option value="Colab-Dinero">Donación Económica</option>
         </select>
       </div>
 
       <div>
         <label for="detalles" id="label_detalles" class="block text-sm font-semibold text-gray-700 mb-2">Detalles del aporte</label>
-        <textarea id="detalles" name="detalles" rows="4" required
+        <!-- CAMBIO: name="compromiso" para que la descripción caiga en la columna J -->
+        <textarea id="detalles" name="compromiso" rows="4" required
           placeholder="Cuéntanos más sobre cómo te gustaría ayudar..."
           class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all resize-none"></textarea>
       </div>
@@ -779,7 +779,7 @@
       <p class="text-center text-xs text-gray-400 mt-4">
         Tus datos están protegidos y solo se usarán para fines de la Fundación.
       </p>
-</form>
+    </form>
   </div>
 </section>
 
