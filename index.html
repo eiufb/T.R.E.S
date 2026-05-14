@@ -722,8 +722,8 @@
 <section class="py-12 px-4 bg-gray-50">
   <div class="max-w-2xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100">
     
-    <!-- Eliminamos action/method para que el script de JS tome el control total -->
-    <form id="form-colaboracion" class="p-8 space-y-6">
+    <!-- ID único para este formulario -->
+    <form id="form-colaboracion-unica" class="p-8 space-y-6">
       
       <input type="hidden" name="_subject" value="Nueva colaboración - Fundación Misión Tres">
       <input type="hidden" name="_next" value="https://fundacionmisiontres.com/exito.html?tipo=colaboracion">
@@ -732,29 +732,29 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-2">Nombre y Apellido</label>
-          <!-- CAMBIO: name="nombres" para que coincida con la columna B -->
+          <!-- name="nombres" para Columna B -->
           <input type="text" id="nombre" name="nombres" required placeholder="Juan Pérez"
-            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all">
+            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all">
         </div>
         
         <div>
           <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Correo Electrónico</label>
           <input type="email" id="email" name="email" required placeholder="juan@ejemplo.com"
-            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all">
+            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all">
         </div>
       </div>
 
       <div>
         <label for="telefono" class="block text-sm font-semibold text-gray-700 mb-2">WhatsApp / Teléfono</label>
-        <!-- CAMBIO: name="whatsapp" para que coincida con la columna E -->
+        <!-- name="whatsapp" para Columna E -->
         <input type="tel" id="telefono" name="whatsapp" placeholder="+57..."
-          class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all">
+          class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all">
       </div>
 
       <div>
         <label for="tipo_donacion" class="block text-sm font-semibold text-gray-700 mb-2">¿Cómo deseas colaborar?</label>
-        <!-- CAMBIO: name="tipo_registro" para la columna A y onchange para los placeholders -->
-        <select id="tipo_donacion" name="tipo_registro" required onchange="actualizarPlaceholder()"
+        <!-- name="tipo_registro" para Columna A -->
+        <select id="tipo_donacion" name="tipo_registro" required onchange="actualizarPlaceholderColab()"
           class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-600 outline-none transition-all cursor-pointer">
           <option value="" disabled selected>Selecciona una categoría</option>
           <option value="Colab-Materiales">Materiales o Materia Prima</option>
@@ -765,15 +765,15 @@
 
       <div>
         <label for="detalles" id="label_detalles" class="block text-sm font-semibold text-gray-700 mb-2">Detalles del aporte</label>
-        <!-- CAMBIO: name="compromiso" para que la descripción caiga en la columna J -->
+        <!-- name="compromiso" para Columna J -->
         <textarea id="detalles" name="compromiso" rows="4" required
           placeholder="Cuéntanos más sobre cómo te gustaría ayudar..."
           class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all resize-none"></textarea>
       </div>
 
-      <button type="submit" 
-        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-blue-200">
-        Enviar 
+      <button type="submit" id="btn-enviar-colab"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+        Enviar Colaboración
       </button>
 
       <p class="text-center text-xs text-gray-400 mt-4">
@@ -784,21 +784,22 @@
 </section>
 
 <script>
-  function actualizarPlaceholder() {
+  // 1. Lógica de Placeholders
+  function actualizarPlaceholderColab() {
     const tipo = document.getElementById('tipo_donacion').value;
     const detalles = document.getElementById('detalles');
     const label = document.getElementById('label_detalles');
 
     const opciones = {
-      'Dinero': {
+      'Colab-Dinero': {
         label: '¿Qué monto o frecuencia tienes en mente?',
         placeholder: 'Ej: Donación única o aporte mensual...'
       },
-      'Trabajo': {
+      'Colab-Trabajo': {
         label: '¿En qué área puedes colaborar?',
         placeholder: 'Ej: Electricidad, diseño, logística, etc...'
       },
-      'Materiales': {
+      'Colab-Materiales': {
         label: '¿Qué materiales deseas entregar?',
         placeholder: 'Ej: Herramientas, materia prima, insumos...'
       }
@@ -809,9 +810,35 @@
       detalles.placeholder = opciones[tipo].placeholder;
     }
   }
+
+  // 2. Lógica de Envío Seguro (Evita filas vacías)
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzmndYclJKkLvAlcjT9mSK2AfhtZ_SpzWCKSDg8syh38lCKRLfirhK_y2392-QpUYQxNw/exec';
+  const formColab = document.getElementById('form-colaboracion-unica');
+  const btnColab = document.getElementById('btn-enviar-colab');
+
+  formColab.addEventListener('submit', e => {
+    e.preventDefault(); // Detiene el envío normal
+    
+    btnColab.innerText = "Enviando...";
+    btnColab.disabled = true;
+
+    fetch(scriptURL, { 
+      method: 'POST', 
+      body: new FormData(formColab),
+      mode: 'no-cors' // Importante para Google Apps Script
+    })
+    .then(() => {
+      // Redirige a la página de éxito configurada en el input hidden _next
+      window.location.href = formColab.querySelector('input[name="_next"]').value;
+    })
+    .catch(error => {
+      console.error('Error!', error.message);
+      alert('Hubo un error al enviar. Por favor intenta de nuevo.');
+      btnColab.innerText = "Enviar Colaboración";
+      btnColab.disabled = false;
+    });
+  });
 </script>
-  </div>
-    </section>
 
 
 
