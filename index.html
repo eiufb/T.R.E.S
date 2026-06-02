@@ -927,6 +927,7 @@ handleFormSubmit('form-2');
 
 
 
+
 <section class="py-16 bg-slate-50 relative overflow-hidden" id="galeria-proyecto">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -947,7 +948,8 @@ handleFormSubmit('form-2');
             <div class="relative w-full max-w-4xl mx-auto">
                 <div class="overflow-hidden rounded-3xl shadow-2xl bg-slate-900 ring-4 ring-white">
                     <div id="video-track" class="flex transition-transform duration-500 ease-in-out">
-                        <div class="aspect-video rounded-[2rem] overflow-hidden shadow-lg border-4 border-white">
+                        
+                        <div class="w-full h-48 overflow-hidden rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
     <iframe 
         class="w-full h-full" 
         src="https://www.youtube.com/embed/BB-SkELsI3U" 
@@ -957,9 +959,7 @@ handleFormSubmit('form-2');
     </iframe>
 </div>
                         
-                        <div class="w-full flex-shrink-0 aspect-video">
-                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/TU_ID_DEL_VIDEO_2?rel=0" title="Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
+                       
 
                     </div>
                 </div>
@@ -982,26 +982,33 @@ handleFormSubmit('form-2');
                         
                         <div class="w-full flex-shrink-0 px-2">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                                <img src="URL_FOTO_1_REUNION_1.jpg" alt="Foto 1" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
-                                <img src="URL_FOTO_2_REUNION_1.jpg" alt="Foto 2" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
-                                <img src="URL_FOTO_3_REUNION_1.jpg" alt="Foto 3" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
+                                <video class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity" 
+       src="https://i.imgur.com/cnCCEDC.mp4" 
+       autoplay loop muted playsinline>
+</video>
+                                <img src="https://imgur.com/Cmi9TYS.jpg" alt="Foto 2" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
+                                <img src="https://imgur.com/jXfPPTk.jpg" alt="Foto 3" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
                             </div>
                             <div class="text-center bg-slate-50 p-4 rounded-xl border border-slate-100">
-                                <h4 class="font-bold text-slate-800 text-lg">Gran Encuentro en Bogotá</h4>
-                                <p class="text-slate-600 mt-2">Más de 500 líderes se reunieron para trazar las metas de los próximos 1000 días del proyecto.</p>
-                            </div>
+                                <h4 class="font-bold text-slate-800 text-lg">Reunión: Colombia Tierra Bendita (Santiago de Cali) – Pastores del Valle del Cauc </h4>
+                                </div>
                         </div>
 
                         <div class="w-full flex-shrink-0 px-2">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                                <img src="URL_FOTO_1_REUNION_2.jpg" alt="Foto 1" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
-                                <img src="URL_FOTO_2_REUNION_2.jpg" alt="Foto 2" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
-                                <img src="URL_FOTO_3_REUNION_2.jpg" alt="Foto 3" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
+                               <video class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity" 
+       src="https://i.imgur.com/7uj4SLe.mp4" 
+       autoplay 
+       loop 
+       muted 
+       playsinline>
+</video>
+                                <img src="https://imgur.com/0UP8vV6.jpg" alt="Foto 2" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
+                                <img src="https://imgur.com/FT7ZWxk.jpg" alt="Foto 3" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
                             </div>
                             <div class="text-center bg-slate-50 p-4 rounded-xl border border-slate-100">
-                                <h4 class="font-bold text-slate-800 text-lg">Capacitación de Nuevos Creyentes</h4>
-                                <p class="text-slate-600 mt-2">Un tiempo de instrucción profunda para fortalecer las bases de las nuevas iglesias en la región.</p>
-                            </div>
+                                <h4 class="font-bold text-slate-800 text-lg">Reunión: Colombia Tierra Bendita (Ibagué) – Pastores del Tolima </h4>
+                               </div>
                         </div>
 
                     </div>
@@ -1061,7 +1068,6 @@ handleFormSubmit('form-2');
         initSlider('photo-track', 'prev-photo', 'next-photo');
     });
 </script>
-
 
 
 
