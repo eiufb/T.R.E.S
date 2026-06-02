@@ -755,10 +755,11 @@
                 
    <!-- Formulario 1 Corregido -->
  <form id="form-1"  class="hidden space-y-4">
-        <input type="hidden" name="_subject" value="Nuevo Registro de Pastor/Ministro - Misión TRES">
-        <input type="hidden" name="_captcha" value="false"> 
-        <input type="hidden" name="_next" value="https://fundacionmisiontres.com/exito.html?tipo=pastor">
-        <input type="text" name="_gotcha" style="display:none">
+    <input type="hidden" name="_subject" value="Nuevo Registro de Pastor/Ministro - Misión TRES">
+    <input type="hidden" name="_captcha" value="false"> 
+    <input type="hidden" name="_next" value="https://fundacionmisiontres.com/exito.html?tipo=pastor">
+    <input type="hidden" name="tipo_registro" value="Pastor">
+    <input type="text" name="_gotcha" style="display:none">
     
         <h3 class="text-2xl font-black text-brandBlue mb-6 uppercase border-b-4 border-brandYellow inline-block">Formulario para Pastor o Ministro</h3>
         
@@ -784,11 +785,12 @@
 
 
    
- <form id="form-2"  class="hidden space-y-4">
-        <input type="hidden" name="_subject" value="Nuevo Registro de Creyente - Misión TRES">
-        <input type="hidden" name="_captcha" value="false"> 
-        <input type="hidden" name="_next" value="https://fundacionmisiontres.com/exito.html?tipo=creyente">
-        <input type="text" name="_gotcha" style="display:none">
+<form id="form-2"  class="hidden space-y-4">
+    <input type="hidden" name="_subject" value="Nuevo Registro de Creyente - Misión TRES">
+    <input type="hidden" name="_captcha" value="false"> 
+    <input type="hidden" name="_next" value="https://fundacionmisiontres.com/exito.html?tipo=creyente">
+    <input type="hidden" name="tipo_registro" value="Creyente">
+    <input type="text" name="_gotcha" style="display:none">
     
         <h3 class="text-2xl font-black text-brandRed mb-6 uppercase border-b-4 border-brandYellow inline-block">Formulario para Nuevo Creyente</h3>
         
@@ -823,11 +825,11 @@
     </div>
 </div>
 <script>
-// URL de tu Script de Google (Mantenida de tu código actual)
+// URL de tu Script de Google (Asegúrate de poner tu URL real aquí)
 const scriptURL = 'https://script.google.com/macros/s/AKfycbzGJ530V1dBPVcL_D8NONmhyNGQMymdTx8cfp-AbOevjCjLbnCoyRrA-_jPt3ffWilFUA/exec';
 
-// FUNCIÓN PRINCIPAL DE ENVÍO CORREGIDA Y OPTIMIZADA
-const handleFormSubmit = (formId, tipo) => {
+// FUNCIÓN PRINCIPAL DE ENVÍO NATIVA
+const handleFormSubmit = (formId) => {
     const form = document.getElementById(formId);
     if (!form) return;
     
@@ -843,46 +845,27 @@ const handleFormSubmit = (formId, tipo) => {
         submitBtn.style.color = "yellow";        
         submitBtn.disabled = true;
 
-        // Creamos un URLSearchParams para asegurar compatibilidad total con e.parameter de Google
+        // Captura todo de forma nativa (incluyendo el input hidden que agregamos)
         const formData = new FormData(form);
-        const searchParams = new URLSearchParams();
 
-        // Pasamos todos los campos del formulario
-        for (const pair of formData.entries()) {
-            searchParams.append(pair[0], pair[1]);
-        }
-        
-        // Forzamos manualmente el tipo de registro limpio sin espacios
-        searchParams.set('tipo_registro', tipo);
-
-        // --- BLOQUE DE PRUEBA EN CONSOLA ---
-        console.log("--- Enviando datos reales para " + tipo + " ---");
-        for (let [key, value] of searchParams.entries()) {
-            console.log(`${key}: ${value}`); 
-        }
-        // ------------------------------------
-
-        // Envío por AJAX usando la codificación nativa de formularios de Google
+        // Envío directo a Google Sheets
         fetch(scriptURL, { 
             method: 'POST', 
-            body: searchParams,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
+            body: formData,
             mode: 'no-cors' 
         })
         .then(() => {
-            console.log("Envío procesado a Google Sheets");
+            console.log("Envío procesado correctamente a Google Sheets");
             window.location.href = redirectUrl;
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error en el envío:', error);
             window.location.href = redirectUrl;
         });
     });
 };
 
-// FUNCIONES DE INTERFAZ (Sin cambios)
+// FUNCIONES DE INTERFAZ (Se mantienen igual)
 function verificarEstado() {
     if(window.location.hash === '#exito') {
         const container = document.getElementById('form-container');
@@ -935,12 +918,10 @@ function showForm(num) {
 window.addEventListener('load', verificarEstado);
 window.addEventListener('hashchange', verificarEstado);
 
-// Activar el manejo de los dos formularios
-handleFormSubmit('form-1', 'Pastor');
-handleFormSubmit('form-2', 'Creyente');
-</script>
-                
-                
+// Activamos los formularios (Ya no hace falta pasarle el texto secundario)
+handleFormSubmit('form-1');
+handleFormSubmit('form-2');
+</script>                
                 <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
