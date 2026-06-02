@@ -823,10 +823,10 @@
     </div>
 </div>
 <script>
-// URL de tu Script de Google (Definida una sola vez)
-const scriptURL = ' https://script.google.com/macros/s/AKfycbzGJ530V1dBPVcL_D8NONmhyNGQMymdTx8cfp-AbOevjCjLbnCoyRrA-_jPt3ffWilFUA/exec';
+// URL de tu Script de Google (Mantenida de tu código actual)
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzGJ530V1dBPVcL_D8NONmhyNGQMymdTx8cfp-AbOevjCjLbnCoyRrA-_jPt3ffWilFUA/exec';
 
-// FUNCIÓN PRINCIPAL DE ENVÍO
+// FUNCIÓN PRINCIPAL DE ENVÍO CORREGIDA Y OPTIMIZADA
 const handleFormSubmit = (formId, tipo) => {
     const form = document.getElementById(formId);
     if (!form) return;
@@ -843,20 +843,32 @@ const handleFormSubmit = (formId, tipo) => {
         submitBtn.style.color = "yellow";        
         submitBtn.disabled = true;
 
+        // Creamos un URLSearchParams para asegurar compatibilidad total con e.parameter de Google
         const formData = new FormData(form);
-        formData.append('tipo_registro', tipo);
+        const searchParams = new URLSearchParams();
 
-        // --- BLOQUE DE PRUEBA: Ver datos en consola antes de enviar ---
-        console.log("--- Datos capturados para " + tipo + " ---");
-        for (let [key, value] of formData.entries()) {
+        // Pasamos todos los campos del formulario
+        for (const pair of formData.entries()) {
+            searchParams.append(pair[0], pair[1]);
+        }
+        
+        // Forzamos manualmente el tipo de registro limpio sin espacios
+        searchParams.set('tipo_registro', tipo);
+
+        // --- BLOQUE DE PRUEBA EN CONSOLA ---
+        console.log("--- Enviando datos reales para " + tipo + " ---");
+        for (let [key, value] of searchParams.entries()) {
             console.log(`${key}: ${value}`); 
         }
-        // -------------------------------------------------------------
+        // ------------------------------------
 
-        // Envío por AJAX
+        // Envío por AJAX usando la codificación nativa de formularios de Google
         fetch(scriptURL, { 
             method: 'POST', 
-            body: formData,
+            body: searchParams,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
             mode: 'no-cors' 
         })
         .then(() => {
