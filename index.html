@@ -825,10 +825,9 @@
     </div>
 </div>
 <script>
-// URL de tu Script de Google (Asegúrate de poner tu URL real aquí)
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzGJ530V1dBPVcL_D8NONmhyNGQMymdTx8cfp-AbOevjCjLbnCoyRrA-_jPt3ffWilFUA/exec';
+// Pega aquí tu NUEVA URL generada en el Paso 1
+const scriptURL = ' https://script.google.com/macros/s/AKfycbxRnDH6MYQawM3ajx55FHWezZhN188XMaP67cmSpcDaeHJWM9t5_jP7kPxekNCrv_-UXg/exec';
 
-// FUNCIÓN PRINCIPAL DE ENVÍO NATIVA
 const handleFormSubmit = (formId) => {
     const form = document.getElementById(formId);
     if (!form) return;
@@ -845,17 +844,23 @@ const handleFormSubmit = (formId) => {
         submitBtn.style.color = "yellow";        
         submitBtn.disabled = true;
 
-        // Captura todo de forma nativa (incluyendo el input hidden que agregamos)
+        // Extraemos los datos del formulario
         const formData = new FormData(form);
+        
+        // LOS CONVERTIMOS AL FORMATO NATIVO QUE GOOGLE LEE PERFECTO
+        const dataFormateada = new URLSearchParams();
+        for (const pair of formData) {
+            dataFormateada.append(pair[0], pair[1]);
+        }
 
-        // Envío directo a Google Sheets
+        // Enviamos los datos formateados
         fetch(scriptURL, { 
             method: 'POST', 
-            body: formData,
+            body: dataFormateada,
             mode: 'no-cors' 
         })
         .then(() => {
-            console.log("Envío procesado correctamente a Google Sheets");
+            console.log("Envío exitoso a Google Sheets");
             window.location.href = redirectUrl;
         })
         .catch(error => {
@@ -865,7 +870,6 @@ const handleFormSubmit = (formId) => {
     });
 };
 
-// FUNCIONES DE INTERFAZ (Se mantienen igual)
 function verificarEstado() {
     if(window.location.hash === '#exito') {
         const container = document.getElementById('form-container');
@@ -914,14 +918,15 @@ function showForm(num) {
     if(container) container.scrollIntoView({ behavior: 'smooth' });
 }
 
-// INICIALIZACIÓN
 window.addEventListener('load', verificarEstado);
 window.addEventListener('hashchange', verificarEstado);
 
-// Activamos los formularios (Ya no hace falta pasarle el texto secundario)
 handleFormSubmit('form-1');
 handleFormSubmit('form-2');
-</script>                
+</script>
+
+
+                
                 <footer class="bg-slate-900 text-white py-12 border-t-8 border-brandRed relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
