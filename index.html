@@ -927,7 +927,6 @@ handleFormSubmit('form-2');
 
 
 
-
 <section class="py-16 bg-slate-50 relative overflow-hidden" id="galeria-proyecto">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -952,32 +951,36 @@ handleFormSubmit('form-2');
                 </div>
             </div>
             <!-- Botones ocultos si solo hay 1 video, visibles si agregas más -->
+            <button id="prev-video" class="absolute top-1/2 -left-4 md:-left-12 transform -translate-y-1/2 bg-white text-brandBlue p-3 rounded-full shadow-lg hover:bg-brandYellow hover:text-slate-900 transition-all z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button id="next-video" class="absolute top-1/2 -right-4 md:-right-12 transform -translate-y-1/2 bg-white text-brandBlue p-3 rounded-full shadow-lg hover:bg-brandYellow hover:text-slate-900 transition-all z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
         </div>
 
         <!-- Slider de Contenido (Fotos/Videos) -->
         <div data-aos="fade-up" data-aos-delay="200">
-            <div class="relative w-full max-w-5xl mx-auto">
+            <div class="relative w-full">
                 <div class="overflow-hidden rounded-3xl bg-white shadow-xl p-6 border-2 border-slate-100">
                     <div id="photo-track" class="flex transition-transform duration-500 ease-in-out">
                         
-                        <!-- Slide 1 -->
                         <div class="w-full flex-shrink-0 px-2">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                                <video class="w-full h-48 object-cover rounded-2xl shadow-sm" src="https://i.imgur.com/cnCCEDC.mp4" autoplay loop muted playsinline></video>
-                                <img src="https://imgur.com/Cmi9TYS.jpg" alt="Foto" class="w-full h-48 object-cover rounded-2xl shadow-sm">
-                                <img src="https://imgur.com/jXfPPTk.jpg" alt="Foto" class="w-full h-48 object-cover rounded-2xl shadow-sm">
+                                <video class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity" src="https://i.imgur.com/cnCCEDC.mp4" controls playsinline></video>
+                                <img src="https://imgur.com/Cmi9TYS.jpg" alt="Foto 2" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
+                                <img src="https://imgur.com/jXfPPTk.jpg" alt="Foto 3" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
                             </div>
                             <div class="text-center bg-slate-50 p-4 rounded-xl border border-slate-100">
                                 <h4 class="font-bold text-slate-800 text-lg">Reunión: Colombia Tierra Bendita (Santiago de Cali) – Pastores del Valle del Cauca</h4>
                             </div>
                         </div>
 
-                        <!-- Slide 2 -->
                         <div class="w-full flex-shrink-0 px-2">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                               <video class="w-full h-48 object-cover rounded-2xl shadow-sm" src="https://i.imgur.com/7uj4SLe.mp4" autoplay loop muted playsinline></video>
-                                <img src="https://imgur.com/0UP8vV6.jpg" alt="Foto" class="w-full h-48 object-cover rounded-2xl shadow-sm">
-                                <img src="https://imgur.com/FT7ZWxk.jpg" alt="Foto" class="w-full h-48 object-cover rounded-2xl shadow-sm">
+                               <video class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity" src="https://i.imgur.com/7uj4SLe.mp4" controls playsinline></video>
+                                <img src="https://imgur.com/0UP8vV6.jpg" alt="Foto 2" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
+                                <img src="https://imgur.com/FT7ZWxk.jpg" alt="Foto 3" class="w-full h-48 object-cover rounded-2xl shadow-sm hover:opacity-90 transition-opacity">
                             </div>
                             <div class="text-center bg-slate-50 p-4 rounded-xl border border-slate-100">
                                 <h4 class="font-bold text-slate-800 text-lg">Reunión: Colombia Tierra Bendita (Ibagué) – Pastores del Tolima</h4>
@@ -997,9 +1000,8 @@ handleFormSubmit('form-2');
         </div>
     </div>
 </section>
-                
-                <script>
-    // Función genérica para crear sliders
+
+<script>
     function initSlider(trackId, prevBtnId, nextBtnId) {
         const track = document.getElementById(trackId);
         const prevBtn = document.getElementById(prevBtnId);
@@ -1011,7 +1013,6 @@ handleFormSubmit('form-2');
         const slidesCount = track.children.length;
 
         function updateSlider() {
-            // Mueve el track en porcentajes (100% por slide)
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
@@ -1019,7 +1020,7 @@ handleFormSubmit('form-2');
             if (currentIndex < slidesCount - 1) {
                 currentIndex++;
             } else {
-                currentIndex = 0; // Vuelve al inicio
+                currentIndex = 0;
             }
             updateSlider();
         });
@@ -1028,21 +1029,17 @@ handleFormSubmit('form-2');
             if (currentIndex > 0) {
                 currentIndex--;
             } else {
-                currentIndex = slidesCount - 1; // Va al final
+                currentIndex = slidesCount - 1;
             }
             updateSlider();
         });
     }
 
-    // Inicializamos ambos sliders al cargar la página
     document.addEventListener('DOMContentLoaded', () => {
         initSlider('video-track', 'prev-video', 'next-video');
         initSlider('photo-track', 'prev-photo', 'next-photo');
     });
 </script>
-
-
-
                 
 
                 
