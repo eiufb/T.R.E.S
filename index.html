@@ -825,8 +825,7 @@
     </div>
 </div>
 <script>
-// Pega aquí tu NUEVA URL generada en el Paso 1
-const scriptURL = ' https://script.google.com/macros/s/AKfycbxRnDH6MYQawM3ajx55FHWezZhN188XMaP67cmSpcDaeHJWM9t5_jP7kPxekNCrv_-UXg/exec';
+const scriptURL = '';
 
 const handleFormSubmit = (formId) => {
     const form = document.getElementById(formId);
@@ -836,39 +835,66 @@ const handleFormSubmit = (formId) => {
         e.preventDefault(); 
         e.stopImmediatePropagation();
 
+        // Candado anti-doble clic: Si ya se está enviando, no hace nada más.
+        if (form.dataset.isSubmitting === 'true') return;
+        form.dataset.isSubmitting = 'true';
+
         const submitBtn = form.querySelector('button[type="submit"]');
         const redirectUrl = form.querySelector('input[name="_next"]').value;
+        
+        // Guardamos el estado original del botón por si hay que restaurarlo
+        const originalBtnText = submitBtn.innerText;
+        const originalBtnBg = submitBtn.style.backgroundColor;
 
+        // Cambios visuales para el usuario
         submitBtn.innerText = "ENVIANDO...";
         submitBtn.style.backgroundColor = "red"; 
         submitBtn.style.color = "yellow";        
         submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
-        // Extraemos los datos del formulario
         const formData = new FormData(form);
-        
-        // LOS CONVERTIMOS AL FORMATO NATIVO QUE GOOGLE LEE PERFECTO
         const dataFormateada = new URLSearchParams();
         for (const pair of formData) {
             dataFormateada.append(pair[0], pair[1]);
         }
 
-        // Enviamos los datos formateados
+        // ENVIAR SIN 'no-cors' PARA PODER LEER LA RESPUESTA
         fetch(scriptURL, { 
             method: 'POST', 
-            body: dataFormateada,
-            mode: 'no-cors' 
+            body: dataFormateada 
         })
-        .then(() => {
-            console.log("Envío exitoso a Google Sheets");
-            window.location.href = redirectUrl;
+        .then(response => response.json()) // Leemos la respuesta de Google
+        .then(data => {
+            if (data.result === 'error' && data.message === 'duplicado') {
+                // El servidor nos avisó que la cédula ya existe
+                alert("⚠️ Error: Esta identificación (cédula) ya se encuentra registrada en la base de datos.");
+                restaurarBoton(form, submitBtn, originalBtnText, originalBtnBg);
+            } else if (data.result === 'success') {
+                console.log("Envío exitoso a Google Sheets");
+                window.location.href = redirectUrl;
+            } else {
+                alert("Hubo un error al procesar el registro. Inténtalo de nuevo.");
+                restaurarBoton(form, submitBtn, originalBtnText, originalBtnBg);
+            }
         })
         .catch(error => {
             console.error('Error en el envío:', error);
-            window.location.href = redirectUrl;
+            alert("Error de conexión. Revisa tu internet e intenta de nuevo.");
+            restaurarBoton(form, submitBtn, originalBtnText, originalBtnBg);
         });
     });
 };
+
+// Función auxiliar para volver a habilitar el formulario si hubo un error (como un duplicado)
+function restaurarBoton(form, btn, text, bg) {
+    form.dataset.isSubmitting = 'false';
+    btn.innerText = text;
+    btn.style.backgroundColor = bg;
+    btn.style.color = "yellow";
+    btn.disabled = false;
+    btn.classList.remove('opacity-50', 'cursor-not-allowed');
+}
 
 function verificarEstado() {
     if(window.location.hash === '#exito') {
@@ -924,7 +950,6 @@ window.addEventListener('hashchange', verificarEstado);
 handleFormSubmit('form-1');
 handleFormSubmit('form-2');
 </script>
-
 
 
 
