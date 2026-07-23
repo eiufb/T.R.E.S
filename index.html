@@ -825,8 +825,9 @@
     </div>
 </div>
 <script>
-const scriptURLPastor = 'https://script.google.com/macros/s/AKfycbxzXQ9EABk8AskJzLAov9yynrEll5FZzs8umRaqOewUF4RSQERM-KeTPplV1A0-tYIDBA/exec'; // Tu script actual de Pastores
-const scriptURLCreyente = 'https://script.google.com/macros/s/AKfycbxt_qbHW7ImOp9twny01n_Bt3KDUroGDPqN9ky0zEN3Kf1JsM5gRdm5ljzgegw4FNE/exec'; // El nuevo Web App URL del Excel de Creyentes
+<script>
+const scriptURLPastor = 'https://script.google.com/macros/s/AKfycbxzXQ9EABk8AskJzLAov9yynrEll5FZzs8umRaqOewUF4RSQERM-KeTPplV1A0-tYIDBA/exec'; 
+const scriptURLCreyente = 'https://script.google.com/macros/s/AKfycbwCq0nem6PfgkV_ognMo0O1-v3se-Ng_l6kCLEGx5U3hHJklrTF5mEcVdnoWi6yYvuq/exec'; 
 
 const handleFormSubmit = (formId, targetUrl) => {
     const form = document.getElementById(formId);
@@ -891,6 +892,12 @@ function restaurarBoton(form, submitBtn, originalText, originalBg) {
     submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
 }
 
+// ¡ESTO ERA LO QUE FALTABA! Activa los formularios al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    handleFormSubmit('form-1', scriptURLPastor);
+    handleFormSubmit('form-2', scriptURLCreyente);
+});
+</script>
 // Inicializar ambos formularios asignándoles su URL correspondiente
 document.addEventListener('DOMContentLoaded', () => {
     handleFormSubmit('form-1', scriptURLPastor);
