@@ -825,9 +825,10 @@
     </div>
 </div>
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxzXQ9EABk8AskJzLAov9yynrEll5FZzs8umRaqOewUF4RSQERM-KeTPplV1A0-tYIDBA/exec';
+const scriptURLPastor = 'https://script.google.com/macros/s/AKfycbxzXQ9EABk8AskJzLAov9yynrEll5FZzs8umRaqOewUF4RSQERM-KeTPplV1A0-tYIDBA/exec'; // Tu script actual de Pastores
+const scriptURLCreyente = 'https://script.google.com/macros/s/AKfycbxt_qbHW7ImOp9twny01n_Bt3KDUroGDPqN9ky0zEN3Kf1JsM5gRdm5ljzgegw4FNE/exec'; // El nuevo Web App URL del Excel de Creyentes
 
-const handleFormSubmit = (formId) => {
+const handleFormSubmit = (formId, targetUrl) => {
     const form = document.getElementById(formId);
     if (!form) return;
     
@@ -835,18 +836,15 @@ const handleFormSubmit = (formId) => {
         e.preventDefault(); 
         e.stopImmediatePropagation();
 
-        // Candado anti-doble clic: Si ya se está enviando, no hace nada más.
         if (form.dataset.isSubmitting === 'true') return;
         form.dataset.isSubmitting = 'true';
 
         const submitBtn = form.querySelector('button[type="submit"]');
         const redirectUrl = form.querySelector('input[name="_next"]').value;
         
-        // Guardamos el estado original del botón por si hay que restaurarlo
         const originalBtnText = submitBtn.innerText;
         const originalBtnBg = submitBtn.style.backgroundColor;
 
-        // Cambios visuales para el usuario
         submitBtn.innerText = "ENVIANDO...";
         submitBtn.style.backgroundColor = "red"; 
         submitBtn.style.color = "yellow";        
@@ -859,15 +857,13 @@ const handleFormSubmit = (formId) => {
             dataFormateada.append(pair[0], pair[1]);
         }
 
-        // ENVIAR SIN 'no-cors' PARA PODER LEER LA RESPUESTA
-        fetch(scriptURL, { 
+        fetch(targetUrl, { 
             method: 'POST', 
             body: dataFormateada 
         })
-        .then(response => response.json()) // Leemos la respuesta de Google
+        .then(response => response.json())
         .then(data => {
             if (data.result === 'error' && data.message === 'duplicado') {
-                // El servidor nos avisó que la cédula ya existe
                 alert("⚠️ Error: Esta identificación (cédula) ya se encuentra registrada en la base de datos.");
                 restaurarBoton(form, submitBtn, originalBtnText, originalBtnBg);
             } else if (data.result === 'success') {
@@ -886,6 +882,20 @@ const handleFormSubmit = (formId) => {
     });
 };
 
+function restaurarBoton(form, submitBtn, originalText, originalBg) {
+    form.dataset.isSubmitting = 'false';
+    submitBtn.innerText = originalText;
+    submitBtn.style.backgroundColor = originalBg;
+    submitBtn.style.color = "";
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+}
+
+// Inicializar ambos formularios asignándoles su URL correspondiente
+document.addEventListener('DOMContentLoaded', () => {
+    handleFormSubmit('form-1', scriptURLPastor);
+    handleFormSubmit('form-2', scriptURLCreyente);
+});
 // Función auxiliar para volver a habilitar el formulario si hubo un error (como un duplicado)
 function restaurarBoton(form, btn, text, bg) {
     form.dataset.isSubmitting = 'false';
