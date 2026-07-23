@@ -824,7 +824,7 @@
         <button onclick="window.location.href='https://fundacionmisiontres.com'" class="text-brandBlue font-bold underline hover:text-brandRed transition-colors">Realizar otro registro</button>
     </div>
 </div>
-<script>
+                
 <script>
 const scriptURLPastor = 'https://script.google.com/macros/s/AKfycbxzXQ9EABk8AskJzLAov9yynrEll5FZzs8umRaqOewUF4RSQERM-KeTPplV1A0-tYIDBA/exec'; 
 const scriptURLCreyente = 'https://script.google.com/macros/s/AKfycbwCq0nem6PfgkV_ognMo0O1-v3se-Ng_l6kCLEGx5U3hHJklrTF5mEcVdnoWi6yYvuq/exec'; 
@@ -887,30 +887,9 @@ function restaurarBoton(form, submitBtn, originalText, originalBg) {
     form.dataset.isSubmitting = 'false';
     submitBtn.innerText = originalText;
     submitBtn.style.backgroundColor = originalBg;
-    submitBtn.style.color = "";
+    submitBtn.style.color = "yellow";
     submitBtn.disabled = false;
     submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-}
-
-// ¡ESTO ERA LO QUE FALTABA! Activa los formularios al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-    handleFormSubmit('form-1', scriptURLPastor);
-    handleFormSubmit('form-2', scriptURLCreyente);
-});
-</script>
-// Inicializar ambos formularios asignándoles su URL correspondiente
-document.addEventListener('DOMContentLoaded', () => {
-    handleFormSubmit('form-1', scriptURLPastor);
-    handleFormSubmit('form-2', scriptURLCreyente);
-});
-// Función auxiliar para volver a habilitar el formulario si hubo un error (como un duplicado)
-function restaurarBoton(form, btn, text, bg) {
-    form.dataset.isSubmitting = 'false';
-    btn.innerText = text;
-    btn.style.backgroundColor = bg;
-    btn.style.color = "yellow";
-    btn.disabled = false;
-    btn.classList.remove('opacity-50', 'cursor-not-allowed');
 }
 
 function verificarEstado() {
@@ -961,13 +940,15 @@ function showForm(num) {
     if(container) container.scrollIntoView({ behavior: 'smooth' });
 }
 
+// Inicialización de los formularios al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    handleFormSubmit('form-1', scriptURLPastor);
+    handleFormSubmit('form-2', scriptURLCreyente);
+});
+
 window.addEventListener('load', verificarEstado);
 window.addEventListener('hashchange', verificarEstado);
-
-handleFormSubmit('form-1');
-handleFormSubmit('form-2');
 </script>
-
 
 
 
