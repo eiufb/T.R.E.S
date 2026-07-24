@@ -870,8 +870,8 @@ const handleFormSubmit = (formId, targetUrl) => {
             } else if (data.result === 'success') {
                 console.log("Envío exitoso a Google Sheets");
                 window.location.href = redirectUrl;
-            } else {
-                alert("Hubo un error al procesar el registro. Inténtalo de nuevo.");
+           } else {
+                alert("⚠️ Error de Google Apps Script: " + (data.error || "Desconocido"));
                 restaurarBoton(form, submitBtn, originalBtnText, originalBtnBg);
             }
         })
